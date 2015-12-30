@@ -1,0 +1,244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		D2C8BAEB1C32D8FE00E646E4 /* AppBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBase.swift; sourceTree = "<group>"; };
+		D2D25E481C3293A800FC3A59 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
+		D2D25E5E1C32A6DE00FC3A59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2D25E5F1C32A6DE00FC3A59 /* RenderObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderObject.swift; sourceTree = "<group>"; };
+		D2D25E601C32A6DE00FC3A59 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		D2D25E691C32B27600FC3A59 /* AppBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBase.swift; sourceTree = "<group>"; };
+		D2D25E6A1C32B27600FC3A59 /* OpenGLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGLView.swift; sourceTree = "<group>"; };
+		D2DEA5F91C34303F00AE7B79 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		D2DEA5FA1C34303F00AE7B79 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2DEA5FB1C34303F00AE7B79 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D2C8BAEA1C32D8F300E646E4 /* LinuxApp */ = {
+			isa = PBXGroup;
+			children = (
+				D2C8BAEB1C32D8FE00E646E4 /* AppBase.swift */,
+			);
+			path = LinuxApp;
+			sourceTree = "<group>";
+		};
+		D2D25E371C32934300FC3A59 = {
+			isa = PBXGroup;
+			children = (
+				D2D25E481C3293A800FC3A59 /* Package.swift */,
+				D2D25E421C3293A300FC3A59 /* Sources */,
+			);
+			sourceTree = "<group>";
+		};
+		D2D25E421C3293A300FC3A59 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D2DEA5F81C34303F00AE7B79 /* app */,
+				D2D25E5D1C32A6DE00FC3A59 /* core */,
+				D2C8BAEA1C32D8F300E646E4 /* LinuxApp */,
+				D2D25E681C32B27600FC3A59 /* OSXApp */,
+			);
+			name = Sources;
+			path = ../Sources;
+			sourceTree = "<group>";
+		};
+		D2D25E5D1C32A6DE00FC3A59 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				D2D25E5E1C32A6DE00FC3A59 /* AppDelegate.swift */,
+				D2D25E5F1C32A6DE00FC3A59 /* RenderObject.swift */,
+				D2D25E601C32A6DE00FC3A59 /* Types.swift */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		D2D25E681C32B27600FC3A59 /* OSXApp */ = {
+			isa = PBXGroup;
+			children = (
+				D2D25E691C32B27600FC3A59 /* AppBase.swift */,
+				D2D25E6A1C32B27600FC3A59 /* OpenGLView.swift */,
+			);
+			path = OSXApp;
+			sourceTree = "<group>";
+		};
+		D2DEA5F81C34303F00AE7B79 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				D2DEA5F91C34303F00AE7B79 /* App.swift */,
+				D2DEA5FA1C34303F00AE7B79 /* main.swift */,
+				D2DEA5FB1C34303F00AE7B79 /* Scene.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		D2D25E3E1C32938D00FC3A59 /* opengl_example */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = build;
+			buildConfigurationList = D2D25E3F1C32938D00FC3A59 /* Build configuration list for PBXLegacyTarget "opengl_example" */;
+			buildPhases = (
+			);
+			buildToolPath = "/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin/swift";
+			buildWorkingDirectory = "$(SRCROOT)/../Sources";
+			dependencies = (
+			);
+			name = opengl_example;
+			passBuildSettingsInEnvironment = 0;
+			productName = OpenGL_example;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		D2D25E381C32934300FC3A59 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				TargetAttributes = {
+					D2D25E3E1C32938D00FC3A59 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = D2D25E3B1C32934300FC3A59 /* Build configuration list for PBXProject "OpenGL_example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2D25E371C32934300FC3A59;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2D25E3E1C32938D00FC3A59 /* opengl_example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		D2D25E3C1C32934300FC3A59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D2D25E3D1C32934300FC3A59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		D2D25E401C32938D00FC3A59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "${TARGET_NAME}";
+			};
+			name = Debug;
+		};
+		D2D25E411C32938D00FC3A59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "${TARGET_NAME}";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2D25E3B1C32934300FC3A59 /* Build configuration list for PBXProject "OpenGL_example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D25E3C1C32934300FC3A59 /* Debug */,
+				D2D25E3D1C32934300FC3A59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2D25E3F1C32938D00FC3A59 /* Build configuration list for PBXLegacyTarget "opengl_example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D25E401C32938D00FC3A59 /* Debug */,
+				D2D25E411C32938D00FC3A59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2D25E381C32934300FC3A59 /* Project object */;
+}
