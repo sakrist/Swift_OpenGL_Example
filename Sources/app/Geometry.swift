@@ -15,6 +15,10 @@
     import Cocoa
 #endif
 
+func BUFFER_OFFSET(i: Int) -> UnsafePointer<Void> {
+    let p: UnsafePointer<Void> = nil
+    return p.advancedBy(i)
+}
 
 class Geometry {
     

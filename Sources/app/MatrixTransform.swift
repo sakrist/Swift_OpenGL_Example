@@ -16,9 +16,8 @@
 public struct vector_float3 {
     public var v: (Float, Float, Float)
     
-    var array: [Float] {
-        let arrayFloats: [Float] = [v.0, v.1, v.2]
-        return arrayFloats
+    private var array: [Float] {
+        return [v.0, v.1, v.2]
     }
     
     subscript (index: Int) -> Float {
@@ -50,9 +49,8 @@ public typealias float3 = vector_float3
 public struct vector_float4 {
     public var v: (Float, Float, Float, Float)
     
-    var array: [Float] {
-        let arrayFloats: [Float] = [v.0, v.1, v.2, v.3]
-        return arrayFloats
+    private var array: [Float] {
+        return [v.0, v.1, v.2, v.3]
     }
     
     subscript (index: Int) -> Float {
@@ -72,6 +70,9 @@ public struct vector_float4 {
     public init(_ __var:Float) {
         self.v = (__var, __var, __var, __var)
     }
+    public init(_ f3:float3, _ _w:Float) {
+        self.v = (f3.v.0, f3.v.1, f3.v.2, _w)
+    }
 }
 
 extension vector_float4 {
@@ -79,6 +80,7 @@ extension vector_float4 {
     public var y: Float { get { return self[1] } set(y) { self[1] = y } }
     public var z: Float { get { return self[2] } set(z) { self[2] = z } }
     public var w: Float { get { return self[3] } set(w) { self[3] = w } }
+    public var xyz: float3 { get { return float3(v.0, v.1, v.2) } set(f3) { self.v = (f3.v.0, f3.v.1, f3.v.2, self.v.3) } }
 }
 public typealias float4 = vector_float4
 
@@ -148,11 +150,16 @@ public struct matrix_float4x4 {
 public typealias float4x4 = matrix_float4x4
 
 
-let matrix_identity_float4x4:(float4, float4, float4, float4) =
-    (float4(1.0, 0.0, 0.0, 0.0),
+let matrix_identity_float4x4:float4x4 =
+    float4x4(float4(1.0, 0.0, 0.0, 0.0),
     float4(0.0, 1.0, 0.0, 0.0),
     float4(0.0, 0.0, 1.0, 0.0),
     float4(0.0, 0.0, 0.0, 1.0))
+
+let matrix_identity_float3x3:float3x3 =
+    float3x3(float3(1.0, 0.0, 0.0),
+    float3(0.0, 1.0, 0.0),
+    float3(0.0, 0.0, 1.0))
 
 func matrix_from_columns(c0:float4, _ c1:float4, _ c2: float4, _ c3: float4) -> float4x4 {
     return float4x4(c0, c1, c2, c3)
@@ -311,11 +318,11 @@ func rotate(angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4
 
 
 // Construct a float 3x3 matrix from a 4x4 matrix
-func float4x4to3x3( transpose:Bool, M:float4x4) -> float3x3
+func float4x4to3x3( transpose transpose:Bool, _ m:float4x4) -> float3x3
 {
-    let P:float3 = float3(M[0].x, M[0].y, M[0].z)
-    let Q:float3 = float3(M[1].x, M[1].y, M[1].z)
-    let R:float3 = float3(M[2].x, M[2].y, M[2].z)
+    let P:float3 = m[0].xyz
+    let Q:float3 = m[1].xyz
+    let R:float3 = m[2].xyz
     
     var mat:float3x3
     if transpose {
@@ -326,3 +333,45 @@ func float4x4to3x3( transpose:Bool, M:float4x4) -> float3x3
     
     return mat
 }
+
+
+func transpose( matrix:float3x3) -> float3x3
+{
+    var result:float3x3 = matrix;
+    
+    result[0].y = matrix[1].x;
+    result[0].z = matrix[2].x;
+    result[1].x = matrix[0].y;
+    result[1].z = matrix[2].y;
+    result[2].x = matrix[0].z;
+    result[2].y = matrix[1].z;
+    
+    return result;
+}
+
+func scale( matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
+{
+    let m = float3x3( float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
+        float3(matrix[1].x * sy, matrix[1].y * sy, matrix[1].z * sy),
+        float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ));
+    return m;
+}
+
+func invert(matrix:float3x3, inout isInvertible:Bool) -> float3x3 {
+    let determinant:Float = (matrix[0].x * (matrix[1].y * matrix[2].z - matrix[1].z * matrix[2].y)) +
+        (matrix[0].y * (matrix[1].z * matrix[2].x - matrix[2].z * matrix[1].x)) +
+        (matrix[0].z * (matrix[1].x * matrix[2].y - matrix[1].y * matrix[2].x));
+    
+    let canInvert:Bool = (determinant != 0.0);
+    if (isInvertible) {
+        isInvertible = canInvert;
+    }
+    
+    if (!canInvert) {
+        return matrix_identity_float3x3;
+    }
+    
+    return scale(transpose(matrix), sx:determinant, sy:determinant, sz:determinant);
+}
+
+

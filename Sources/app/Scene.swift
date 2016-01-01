@@ -18,11 +18,6 @@
 
 import utils
 
-func BUFFER_OFFSET(i: Int) -> UnsafePointer<Void> {
-    let p: UnsafePointer<Void> = nil
-    return p.advancedBy(i)
-}
-
 
 public class Scene: RenderObject {
     
@@ -59,26 +54,29 @@ public class Scene: RenderObject {
         
         modelViewProjectionMatrix = projectionMatrix * modelViewMatrix
         
-        normalMatrix = float4x4to3x3(true, M:modelViewMatrix)
+        normalMatrix = float4x4to3x3(transpose:false, modelViewMatrix)
+        var invertible = true
+        normalMatrix = invert(normalMatrix, isInvertible:&invertible)
+        normalMatrix = transpose(normalMatrix)
         
     }
     
     public func render() {
     
-        self.update()
+        update()
         
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         glClearColor(0.65, 0.65, 0.65, 1.0)
         
         // Use shader
-        self.shader.use()
+        shader.use()
         
         withUnsafePointer(&modelViewProjectionMatrix, {
-            glUniformMatrix4fv(self.shader.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(shader.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, UnsafePointer($0))
         })
         
         withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(self.shader.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, UnsafePointer($0))
+            glUniformMatrix3fv(shader.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, UnsafePointer($0))
         })
         
         // Draw objects        
