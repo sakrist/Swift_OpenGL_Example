@@ -33,20 +33,18 @@ import Cocoa
 import AppKit
 import GLKit
     
-import core
+import utils
 
 class OpenGLView: NSOpenGLView
 {
 
     private var trackingArea: NSTrackingArea?
     
-    var renderObject:RenderObject!
+    var renderObject:RenderObject?
 
     func createGL()
     {
-        
-        debugPrint("createGL context")
-        
+
         let attr = [
             NSOpenGLPixelFormatAttribute(NSOpenGLPFAOpenGLProfile),
             NSOpenGLPixelFormatAttribute(NSOpenGLProfileVersion3_2Core),
@@ -69,7 +67,6 @@ class OpenGLView: NSOpenGLView
 
 
     override func reshape() {
-        let frame = self.frame
 
         let context = self.context()
         context.makeCurrentContext()
@@ -85,7 +82,7 @@ class OpenGLView: NSOpenGLView
         }
         
         // Create new tracking area.
-        let options: NSTrackingAreaOptions = [NSTrackingAreaOptions.MouseMoved, NSTrackingAreaOptions.ActiveWhenFirstResponder]
+        let options: NSTrackingAreaOptions = [NSTrackingAreaOptions.MouseMoved, NSTrackingAreaOptions.MouseEnteredAndExited, NSTrackingAreaOptions.ActiveWhenFirstResponder]
         trackingArea = NSTrackingArea(rect: frame, options: options, owner: self, userInfo: nil)
     }
 
@@ -120,13 +117,31 @@ class OpenGLView: NSOpenGLView
         CGLLockContext(context.CGLContextObj)
         
         if renderObject != nil {
-            renderObject.render()
+            renderObject?.render()
         }
         
         self.flush()
         CGLUnlockContext(context.CGLContextObj)
     }
     
+    
+    override func mouseDown(event: NSEvent) {
+        let application = NSApplication.sharedApplication().delegate as! AppBase
+        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
+        application.mouseDown(point, button:1)
+    }
+
+    override func mouseUp(event: NSEvent) {
+        let application = NSApplication.sharedApplication().delegate as! AppBase
+        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
+        application.mouseUp(point)
+    }
+
+    override func mouseDragged(event: NSEvent) {
+        let application = NSApplication.sharedApplication().delegate as! AppBase
+        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
+        application.mouseMove(point)
+    }
 }
 
 #endif

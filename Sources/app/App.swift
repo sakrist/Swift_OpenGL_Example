@@ -13,18 +13,45 @@
     import Darwin.C
     import OSXApp
 #endif
-    
-    
+
+import utils
+
+
 class App: AppBase {
     
-    override func applicationCreate() {
+    var scene:Scene { get { return self.renderObject as! Scene } set(scene) { self.renderObject = scene } }
     
-        self.renderObject = Scene()
-     
+    override func applicationCreate() {
+        
+        // create scene
+        self.scene = Scene()
+        
+        scene.geometries.append(Cube())
+        
+        // re-draw after init
+        self.needsDisplay()
     }
     
     override func applicationClose() {
     
+    }
+    
+    override func windowDidResize(frame:Rect) {
+        scene.size = frame.size
+    }
+    
+    // mouse events
+    override func mouseDown(point:Point, button:Int) {
+    
+    }
+    
+    override func mouseMove(point:Point) {
+        scene.rotation += 0.1
+        needsDisplay()
+    }
+    
+    override func mouseUp(point:Point) {
+        
     }
     
 }
