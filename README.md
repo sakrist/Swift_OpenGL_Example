@@ -1,7 +1,7 @@
 # Swift OpenGL Example
 
 
-This example was developed just for proof of concept that OpenGL app written on swift can run on Linux(Ubuntu) and OS X.
+This example was developed just for proof of concept that OpenGL app written on swift can be compiled and run on Linux(Ubuntu) and OS X.
 
 OS X<br>
 <img src=screen1.png width="500">
