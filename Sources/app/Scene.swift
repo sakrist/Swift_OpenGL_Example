@@ -25,11 +25,22 @@ public class Scene: RenderObject {
     
     var geometries:[Geometry] = []
     
-    var modelViewProjectionMatrix = float4x4()
-    var normalMatrix = float3x3()
-    var rotation: Float = 0.5
+    var modelViewProjectionMatrix = matrix_identity_float4x4
+    var modelViewMatrix = matrix_identity_float4x4
+    var projectionMatrix = matrix_identity_float4x4
     
-    var size:Size = Size(width:640, height:480)
+    var normalMatrix = float3x3()
+    
+    var fovAngle:Float = 65.0
+    var farZ:Float = 100.0
+    var nearZ:Float = 0.1
+    
+    var size:Size = Size(640, 480) {
+        didSet {
+            let aspect = fabsf(Float(size.width / size.height))
+            projectionMatrix = perspective( degreesToRadians(fovAngle), aspect:aspect, nearZ:nearZ, farZ:farZ)
+        }
+    }
     
     init() {
         
@@ -37,20 +48,13 @@ public class Scene: RenderObject {
         self.shader = Shader(vertexShader:vertexShader, fragmentShader:fragmentShader)
         
         glEnable(GLenum(GL_DEPTH_TEST))
+                
+        modelViewMatrix = translate(x:0, y:0, z:-4.0)
         
+        update()
     }
     
     func update() {
-        let aspect = fabsf(Float(size.width / size.height))
-        let projectionMatrix = perspective((65.0 * (3.14 / 180.0)), aspect:aspect, nearZ:0.1, farZ:100.0)
-        
-        var baseModelViewMatrix = float4x4(matrix_identity_float4x4)
-        baseModelViewMatrix[3][2] = -4.0
-        baseModelViewMatrix = baseModelViewMatrix * rotate(rotation, x:0.0, y:1.0, z:0.0)
-        
-        var modelViewMatrix = float4x4(matrix_identity_float4x4)
-        modelViewMatrix = modelViewMatrix * rotate(rotation, x:1.0, y:1.0, z:1.0)
-        modelViewMatrix = baseModelViewMatrix * modelViewMatrix
         
         modelViewProjectionMatrix = projectionMatrix * modelViewMatrix
         

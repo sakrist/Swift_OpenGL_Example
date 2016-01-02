@@ -39,6 +39,7 @@
             rect.origin.y = 0.0
             
             let glview = OpenGLView(frame:rect)
+            glview.application = self
             glview.createGL()
             glview.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
             self.glView = glview;
@@ -59,8 +60,7 @@
         
         public func windowDidResize(notification: NSNotification) {
             let rect = window.frame
-            let frame = Rect(origin:Point(x:Double(rect.origin.x), y:Double(rect.origin.y)),
-                size:Size(width:Double(rect.size.width), height:Double(rect.size.height)))
+            let frame = Rect(Double(rect.origin.x), Double(rect.origin.y), Double(rect.size.width), Double(rect.size.height))
             self.windowDidResize(frame)
         }
         

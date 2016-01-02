@@ -12,6 +12,14 @@
     import Darwin.C
 #endif
 
+import utils
+
+
+public let PI = 3.14159265358979323846264338327950288
+
+func degreesToRadians(degrees:Float) -> Float {
+    return degrees * (Float(PI) / 180)
+}
 
 public struct vector_float3 {
     public var v: (Float, Float, Float)
@@ -37,7 +45,32 @@ public struct vector_float3 {
     public init(_ __var:Float) {
         self.v = (__var,__var,__var)
     }
+    
+    public func cross(vectorRight:vector_float3) -> vector_float3 {
+        return vector_float3( self.v.1 * vectorRight.v.2 - self.v.2 * vectorRight.v.1,
+            self.v.2 * vectorRight.v.0 - self.v.0 * vectorRight.v.2,
+            self.v.0 * vectorRight.v.1 - self.v.1 * vectorRight.v.0 );
+    }
+    
+    public func length() -> Float {
+        return sqrtf(v.0 * v.0 + v.1 * v.1 + v.2 * v.2);
+    }
+    
+     func scale(s:Float) -> vector_float3 {
+        return vector_float3(v.0 * s, v.1 * s, v.2 * s)
+    }
+    
+    public func normalize() -> vector_float3 {
+        let s = 1.0 / self.length();
+        return self.scale(s)
+    }
 }
+
+func -(vectorLeft:vector_float3, vectorRight:vector_float3) -> vector_float3 {
+    return vector_float3( vectorLeft.v.0 - vectorRight.v.0, vectorLeft.v.1 - vectorRight.v.1 , vectorLeft.v.2 - vectorRight.v.2 );
+}
+
+
 extension vector_float3 {
     public var x: Float { get { return self[0] } set(x) { self[0] = x } }
     public var y: Float { get { return self[1] } set(y) { self[1] = y } }
@@ -84,6 +117,8 @@ extension vector_float4 {
 }
 public typealias float4 = vector_float4
 
+public typealias quat = vector_float4
+
 
 public struct matrix_float3x3 {
     public var columns: (float3, float3, float3)
@@ -123,6 +158,13 @@ public struct matrix_float4x4 {
         self.columns = m
     }
     
+    public init(_ m0: Float, _ m1: Float, _ m2: Float, _ m3: Float,
+        _ m4: Float, _ m5: Float, _ m6: Float, _ m7: Float,
+        _ m8: Float, _ m9: Float, _ m10: Float, _ m11: Float,
+        _ m12: Float, _ m13: Float, _ m14: Float, _ m15: Float) {
+        self.columns = ( float4(m0,m1,m2,m3), float4(m4,m5,m6,m7), float4(m8,m9,m10,m11), float4(m12,m13,m14,m15) )
+    }
+    
     public init() {
         self.columns = (float4(0.0), float4(0.0), float4(0.0), float4(0.0))
     }
@@ -148,6 +190,7 @@ public struct matrix_float4x4 {
 }
 
 public typealias float4x4 = matrix_float4x4
+
 
 
 let matrix_identity_float4x4:float4x4 =
@@ -211,6 +254,9 @@ func *(matrixLeft: float4x4, matrixRight: float4x4) -> float4x4 {
     return m
 }
 
+func *=(inout matrixLeft: float4x4, matrixRight: float4x4) {
+    matrixLeft = (matrixLeft * matrixRight)
+}
 
 func length(vector:float3) -> Float {
     return sqrtf(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z)
@@ -220,6 +266,37 @@ func normalize(vector:float3) -> float3 {
     let scale = 1.0 / length(vector)
     let v = float3( vector.x * scale, vector.y * scale, vector.z * scale )
     return v
+}
+
+
+func xRotation(radians:Float) -> float4x4 {
+    let cos = cosf(radians)
+    let sin = sinf(radians)
+    let m = float4x4( 1.0, 0.0, 0.0, 0.0,
+        0.0, cos, sin, 0.0,
+        0.0, -sin, cos, 0.0,
+        0.0, 0.0, 0.0, 1.0 )
+    return m
+}
+
+func yRotation(radians:Float) -> float4x4 {
+    let cos = cosf(radians)
+    let sin = sinf(radians)
+    let m = float4x4( cos, 0.0, -sin, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        sin, 0.0, cos, 0.0,
+        0.0, 0.0, 0.0, 1.0 )
+    return m
+}
+
+func zRotation(radians:Float) -> float4x4 {
+    let cos = cosf(radians);
+    let sin = sinf(radians);
+    let m = float4x4(cos, sin, 0.0, 0.0,
+        -sin, cos, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0 )
+    return m
 }
 
 
@@ -256,7 +333,7 @@ func scale(s:float3) -> float4x4 {
 }
 
 // scale
-func scale(x:Float, y:Float, z:Float) -> float4x4 {
+func scale(x x:Float, y:Float, z:Float) -> float4x4 {
     return scale(float3(x, y, z))
 }
 
@@ -270,7 +347,7 @@ func translate(t:float3) -> float4x4 {
 }
 
 // translate
-func translate(x:Float, y:Float, z:Float) -> float4x4 {
+func translate(x x:Float, y:Float, z:Float) -> float4x4 {
     return translate(float3(x,y,z))
 }
 
@@ -374,4 +451,92 @@ func invert(matrix:float3x3, inout isInvertible:Bool) -> float3x3 {
     return scale(transpose(matrix), sx:determinant, sy:determinant, sz:determinant);
 }
 
+// Source of trackball
+// http://fossies.org/linux/privat/gfsview-snapshot-121130.tar.gz:a/gfsview-snapshot-121130/gl/trackball.c
+
+
+func tb_project_to_sphere(r:Float, _ x:Float, _ y:Float) -> Float
+{
+    var d:Float, t:Float, z:Float
+    
+    d = sqrtf(x*x + y*y)
+    if d < (r * 0.70710678118654752440) {    /* Inside sphere */
+        z = sqrtf(r*r - d*d)
+    } else {           /* On hyperbola */
+        t = r / 1.41421356237309504880
+        z = t*t / d
+    }
+    return z
+}
+
+func trackball(start start:Point, end:Point, trackSize:Float) -> quat
+{
+    var quat_result:quat
+    
+    var a:float3 /* Axis of rotation */
+    var phi:Float  /* how much to rotate about axis */
+    var p1:float3, p2:float3, d:float3
+    var t:Float
+    
+    if start.x == end.x && start.y == end.y {
+        quat_result = quat(0, 0, 0, 1.0)
+        return quat_result
+    }
+    
+    /*
+    * First, figure out z-coordinates for projection of P1 and P2 to
+    * deformed sphere
+    */
+    p1 = float3(Float(start.x), Float(start.y), tb_project_to_sphere(trackSize, Float(start.x), Float(start.y)))
+    p2 = float3(Float(end.x), Float(end.y), tb_project_to_sphere(trackSize, Float(end.x), Float(end.y)))
+    
+    /*
+    *  Now, we want the cross product of P1 and P2
+    */
+    a = p2.cross(p1)
+    
+    /*
+    *  Figure out how much to rotate around that axis.
+    */
+    d = p1 - p2
+    t = d.length() / (2.0*trackSize)
+    
+    /*
+    * Avoid problems with out-of-control values...
+    */
+    if t > 1.0 {
+        t = 1.0
+    }
+    if t < -1.0 {
+        t = -1.0
+    }
+    phi = 2.0 * asinf(t)
+    
+    
+    a = a.normalize()
+    a = a.scale(sinf(phi/2.0))
+    quat_result = quat(a, cosf(phi/2.0))
+    
+    return quat_result
+}
+
+
+func rotationMatrix(q:quat) -> float4x4 {
+    
+    var m = matrix_identity_float4x4
+    
+    m[0].x = 1.0 - 2.0 * (q[1] * q[1] + q[2] * q[2])
+    m[0].y = 2.0 * (q[0] * q[1] - q[2] * q[3])
+    m[0].z = 2.0 * (q[2] * q[0] + q[1] * q[3])
+    
+    m[1].x = 2.0 * (q[0] * q[1] + q[2] * q[3])
+    m[1].y = 1.0 - 2.0 * (q[2] * q[2] + q[0] * q[0])
+    m[1].z = 2.0 * (q[1] * q[2] - q[0] * q[3])
+
+    m[2].x = 2.0 * (q[2] * q[0] - q[1] * q[3])
+    m[2].y = 2.0 * (q[1] * q[2] + q[0] * q[3])
+    m[2].z = 1.0 - 2.0 * (q[1] * q[1] + q[0] * q[0])
+    
+    return m
+}
 

@@ -6,10 +6,14 @@
 //
 //
 
+
 public struct Point {
     public var x:Double = 0
     public var y:Double = 0
-    public init(x:Double, y:Double) {
+    
+    public init() { }
+    
+    public init(_ x:Double, _ y:Double) {
         self.x = x
         self.y = y
     }
@@ -19,17 +23,32 @@ public struct Size {
     public var width:Double = 0
     public var height:Double = 0
 
-    public init(width:Double, height:Double) {
+    public init() { }
+    public init(_ width:Double, _ height:Double) {
         self.width = width
         self.height = height
     }
 }
 
 public struct Rect {
-    public var origin = Point(x:0.0, y:0.0)
-    public var size = Size(width:0.0, height:0.0)
-    public init(origin:Point, size:Size) {
+    public var origin = Point()
+    public var size = Size()
+    
+    public init() { }
+    
+    public init(_ origin:Point, _ size:Size) {
         self.origin = origin
         self.size = size
     }
+    
+    public init(_ x:Double, _ y:Double, _ width:Double, _ height:Double) {
+        self.origin = Point(x, y)
+        self.size = Size(width, height)
+    }
+    
+    public init(_ x:Int, _ y:Int, _ width:Int, _ height:Int) {
+        self.origin = Point(Double(x), Double(y))
+        self.size = Size(Double(width), Double(height))
+    }
+    
 }

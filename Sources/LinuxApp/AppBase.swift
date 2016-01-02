@@ -30,7 +30,7 @@ public class AppBase: AppDelegate, MouseEventDelegate {
     var visInfo:UnsafeMutablePointer<XVisualInfo>!
     var glContext:GLXContext!
     
-    var frame:Rect = Rect(origin:Point(x:0.0, y:0.0) ,size:Size(width:640, height:480))
+    var frame:Rect = Rect(0.0, 0.0, 640, 480)
     
     var buttonDownFlag:Int = 0
     
@@ -102,7 +102,7 @@ public class AppBase: AppDelegate, MouseEventDelegate {
                 let width = Double(gwa.memory.width)
                 let height = Double(gwa.memory.height)
                 if frame.size.width != width || frame.size.height != height {
-                    frame.size = Size(width:width, height:height)
+                    frame.size = Size(width, height)
                     self.windowDidResize(frame)
                     glViewport(0, 0, gwa.memory.width, gwa.memory.height)
                 }
@@ -113,16 +113,16 @@ public class AppBase: AppDelegate, MouseEventDelegate {
                 
             case MotionNotify:
                 if buttonDownFlag != 0 {
-                    mouseMove(Point(x:Double(event.memory.xmotion.x),y:Double(event.memory.xmotion.y)))
+                    mouseMove(Point(Double(event.memory.xmotion.x), Double(event.memory.xmotion.y)))
                 }
                 
                 break
             case ButtonPress:
-                mouseDown(Point(x:Double(event.memory.xbutton.x),y:Double(event.memory.xbutton.y)), button:Int(event.memory.xbutton.button))
+                mouseDown(Point(Double(event.memory.xbutton.x), Double(event.memory.xbutton.y)), button:Int(event.memory.xbutton.button))
                 buttonDownFlag |= Int(event.memory.xbutton.button)
                 break
             case ButtonRelease:
-                mouseUp(Point(x:Double(event.memory.xbutton.x),y:Double(event.memory.xbutton.y)))
+                mouseUp(Point(Double(event.memory.xbutton.x), Double(event.memory.xbutton.y)))
                 buttonDownFlag = buttonDownFlag ^ Int(event.memory.xbutton.button)
                 break
                 

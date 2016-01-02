@@ -41,7 +41,15 @@ class OpenGLView: NSOpenGLView
     private var trackingArea: NSTrackingArea?
     
     var renderObject:RenderObject?
+    
+    var application:AppBase?
 
+    override var flipped:Bool {
+        get {
+            return true
+        }
+    }
+    
     func createGL()
     {
 
@@ -126,21 +134,21 @@ class OpenGLView: NSOpenGLView
     
     
     override func mouseDown(event: NSEvent) {
-        let application = NSApplication.sharedApplication().delegate as! AppBase
-        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
-        application.mouseDown(point, button:1)
+        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+        let point = Point(Double(p.x), Double(p.y))
+        application?.mouseDown(point, button:1)
     }
 
     override func mouseUp(event: NSEvent) {
-        let application = NSApplication.sharedApplication().delegate as! AppBase
-        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
-        application.mouseUp(point)
+        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+        let point = Point(Double(p.x), Double(p.y))
+        application?.mouseUp(point)
     }
 
     override func mouseDragged(event: NSEvent) {
-        let application = NSApplication.sharedApplication().delegate as! AppBase
-        let point = Point(x:Double(event.locationInWindow.x), y:Double(event.locationInWindow.y))
-        application.mouseMove(point)
+        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+        let point = Point(Double(p.x), Double(p.y))
+        application?.mouseMove(point)
     }
 }
 
