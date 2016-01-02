@@ -8,3 +8,8 @@ OS X<br>
 <br><br>
 Ubuntu<br>
 <img src=screen2.png width="500">
+
+
+Don't judge hard, it was done in 3 evenings. :)
+
+Questions and suggestions are welcome.
