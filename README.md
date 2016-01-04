@@ -42,7 +42,7 @@ Install swift toolchaine, download from [swift.org](https://swift.org/download/#
 <img src=screen2.png width="500">
 
 ### Kind of Conclusion
-When I start writing this example, my expirence with Swift was zero, except that I read a book, ok half of book, ok first 15 pages :). I promice to read it all. 
+At beginning of work on example, my expirence with Swift was zero, except that I read a book, ok half book, ok first 15 pages :). I promice, will read it all. 
 So, I can sum that even with low knowledges in Swift, but with expirence in C/C++/Objective-C, you can easily develop some basic app like this. 
 
 Also want to say that I do like Swift [Package Manager](https://swift.org/package-manager/#conceptual-overview) and Modules concept.
