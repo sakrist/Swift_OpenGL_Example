@@ -41,21 +41,22 @@ public class Shader {
         var glsl_version_string = String.fromCString(glsl_version_cstring)
         
         glsl_version_string.removeAtIndex(glsl_version_string.startIndex.advancedBy(1)) // delete point 1.30 -> 130
-        glsl_version_string = "#version " + glsl_version_string
+        glsl_version_string = "version " + glsl_version_string
         
-        var range = vertexShader_.rangesOfString("#version 000")
+        var range = vertexShader_.rangesOfString("version 000")
         vertexShader_.replaceRange(range[0], with: glsl_version_string)
+        vertexShader_.replaceRange(range[1], with: glsl_version_string)
         
-        range = fragmentShader_.rangesOfString("#version 000")
+        range = fragmentShader_.rangesOfString("version 000")
         fragmentShader_.replaceRange(range[0], with: glsl_version_string)
-        
+        fragmentShader_.replaceRange(range[1], with: glsl_version_string)
         
         var vertShader: GLuint = 0
         var fragShader: GLuint = 0
         
         // Create shader program.
         program = glCreateProgram()
-                
+        
         // Create and compile vertex shader.
         if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), shaderString: vertexShader_) == false {
             print("Failed to compile vertex shader")
@@ -140,18 +141,18 @@ public class Shader {
         
         source.dealloc(shaderString.characters.count)
         
-//        #if defined(DEBUG)
-                var logLength: GLint = 0
-                glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-                if logLength > 0 {
-                    let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength))) as UnsafeMutablePointer<Int8>
-                    glGetShaderInfoLog(shader, logLength, &logLength, log)
-
-                    let logString = String.fromCString(log)
-                    print(logString)
-                    free(log)
-                }
-//        #endif
+        //        #if defined(DEBUG)
+        var logLength: GLint = 0
+        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+        if logLength > 0 {
+            let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength))) as UnsafeMutablePointer<Int8>
+            glGetShaderInfoLog(shader, logLength, &logLength, log)
+            
+            let logString = String.fromCString(log)
+            print(logString)
+            free(log)
+        }
+        //        #endif
         
         glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)
         if status == 0 {

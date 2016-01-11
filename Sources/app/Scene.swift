@@ -48,7 +48,7 @@ public class Scene: RenderObject {
         self.shader = Shader(vertexShader:vertexShader, fragmentShader:fragmentShader)
         
         glEnable(GLenum(GL_DEPTH_TEST))
-                
+        
         modelViewMatrix = translate(x:0, y:0, z:-4.0)
         
         update()
@@ -66,8 +66,9 @@ public class Scene: RenderObject {
     }
     
     public func render() {
-    
+        
         update()
+        
         
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         glClearColor(0.65, 0.65, 0.65, 1.0)
@@ -83,7 +84,7 @@ public class Scene: RenderObject {
             glUniformMatrix3fv(shader.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, UnsafePointer($0))
         })
         
-        // Draw objects        
+        // Draw objects
         for g in geometries {
             g.draw()
         }
@@ -91,36 +92,50 @@ public class Scene: RenderObject {
 }
 
 
-var vertexShader = "#version 000  \n "
-+ "in vec4 position;\n"
-+ "in vec3 normal;\n"
-+ "\n"
-+ "out vec4 colorVarying;\n"
-+ "\n"
-+ "uniform mat4 modelViewProjectionMatrix;\n"
-+ "uniform mat3 normalMatrix;\n"
-+ "\n"
-+ "void main()\n"
-+ "    {\n"
-+ "        vec3 eyeNormal = normalize(normalMatrix * normal);\n"
-+ "        vec3 lightPosition = vec3(0.0, 0.0, 1.0);\n"
-+ "        vec4 diffuseColor = vec4(0.4, 0.4, 1.0, 1.0);\n"
-+ "\n"
-+ "        float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));\n"
-+ "\n"
-+ "        colorVarying = diffuseColor * nDotVP;\n"
-+ "\n"
-+ "        gl_Position = modelViewProjectionMatrix * position;\n"
-+ "}\n  "
+var vertexShader = "#version 000  \n"
+    + "#define version 000 \n"
+    + "\n"
+    + "#if version>130 \n"
+    + "#define attribute in \n"
+    + "#define varying out \n"
+    + "#endif \n"
+    + "\n"
+    + "attribute vec4 position;\n"
+    + "attribute vec3 normal;\n"
+    + "\n"
+    + "varying vec4 colorVarying;\n"
+    + "\n"
+    + "uniform mat4 modelViewProjectionMatrix;\n"
+    + "uniform mat3 normalMatrix;\n"
+    + "\n"
+    + "void main()\n"
+    + "    {\n"
+    + "        vec3 eyeNormal = normalize(normalMatrix * normal);\n"
+    + "        vec3 lightPosition = vec3(0.0, 0.0, 1.0);\n"
+    + "        vec4 diffuseColor = vec4(0.4, 0.4, 1.0, 1.0);\n"
+    + "\n"
+    + "        float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));\n"
+    + "\n"
+    + "        colorVarying = diffuseColor * nDotVP;\n"
+    + "\n"
+    + "        gl_Position = modelViewProjectionMatrix * position;\n"
+    + "}\n  "
 
 
 var fragmentShader = "#version 000\n"
-+ "in vec4 colorVarying;\n"
-+ "\n"
-+ "out vec4 glFragData0;\n"
-+ "void main()\n"
-+ "    {\n"
-+ "        glFragData0 = colorVarying;\n"
-+ "}\n "
-
+    + "#define version 000 \n"
+    + "\n"
+    + "#if version>130 \n"
+    + "#define varying in \n"
+    + "out vec4 glFragData0;\n"
+    + "#else\n"
+    + "#define glFragData0 gl_FragColor \n"
+    + "#endif \n"
+    + "\n"
+    + "varying vec4 colorVarying;\n"
+    + "\n"
+    + "void main()\n"
+    + "    {\n"
+    + "        glFragData0 = colorVarying;\n"
+    + "}\n "
 
