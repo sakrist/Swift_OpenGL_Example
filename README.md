@@ -1,22 +1,26 @@
 # Swift OpenGL Example
 
-This project was developed just for proof of concept: Simple application with OpenGL written on swift - can be compiled and run on Ubuntu (Linux) and OS X. And in future on some X platform. 
+This project was developed just for proof of concept: Simple application with OpenGL written on swift - can be compiled and run on Ubuntu (Linux) and OS X. And in future on some *X* platform too. 
 
 ### Getting Started
 
-Install swift toolchaine, download from [swift.org](https://swift.org/download/#latest-development-snapshots). Instruction [here](https://swift.org/getting-started/#installing-swift).
-
+[Install](https://swift.org/getting-started/#installing-swift) swift toolchaine.
 ###### OS X
-1. Clone repository 
-2. run `swift build` in terminal or use Xcode project.
+1. Open a terminal window
+2. Clone repository 
+3. Go to the directory to which you clone.
+4. run `swift build` in terminal or use Xcode project.
+5. run `.build/debug/app`
 
-###### Linux (Ubuntu)
+###### Linux (Ubuntu 64-bit)
 
-1. Clone repository
+1. Open a terminal window
 2. Install dependecies packages<br>
 `sudo apt-get install libx11-dev libglu1-mesa-dev mesa-common-dev`
-3. run `swift build`
-4. run `.build/debug/app`
+3. Clone repository
+4. Go to the directory to which you clone.
+5. run `swift build` to build
+6. run `.build/debug/app`
 
 
 
@@ -42,14 +46,9 @@ Install swift toolchaine, download from [swift.org](https://swift.org/download/#
 <img src=screen2.png width="500">
 
 ### Kind of Conclusion
-At beginning of work on example, my expirence with Swift was zero, except that I read a book, ok half book, ok first 15 pages :). I promice, will read it all. 
-So, I can sum that even with low knowledges in Swift, but with expirence in C/C++/Objective-C, you can easily develop some basic app like this. 
-
-Also want to say that I do like Swift [Package Manager](https://swift.org/package-manager/#conceptual-overview) and Modules concept.
+[Swift Package Manager](https://swift.org/package-manager/#conceptual-overview) and Modules concept very friendly, but need more documentation.
 <br>
 <br>
-Don't judge too hard, project was done in 3 evenings. :)
-
-<br>
+#### Warning: It's just an example.
 #### Questions and suggestions are welcome.
 
