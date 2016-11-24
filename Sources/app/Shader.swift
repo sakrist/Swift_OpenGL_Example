@@ -26,7 +26,7 @@ public class Shader {
     
     
     public var program:UInt32 = 0
-    public var uniforms = [GLint](count: 2, repeatedValue: 0)
+    public var uniforms = [GLint](repeating: 0, count: 2)
     
     public init?(vertexShader: String, fragmentShader: String) {
         
@@ -34,22 +34,22 @@ public class Shader {
         var fragmentShader_ = fragmentShader;
         
         let GL_version_cstring = glGetString(GLenum(GL_VERSION)) as UnsafePointer<UInt8>
-        let GL_version_string = String.fromCString(GL_version_cstring)
+        let GL_version_string = String(cString:GL_version_cstring)
         debugPrint(GL_version_string)
         
         let glsl_version_cstring = glGetString(GLenum(GL_SHADING_LANGUAGE_VERSION)) as UnsafePointer<UInt8>
-        var glsl_version_string = String.fromCString(glsl_version_cstring)
+        var glsl_version_string = String(cString:glsl_version_cstring)
         
-        glsl_version_string.removeAtIndex(glsl_version_string.startIndex.advancedBy(1)) // delete point 1.30 -> 130
+        glsl_version_string.remove(at:glsl_version_string.index(glsl_version_string.startIndex, offsetBy: 1)) // delete point 1.30 -> 130
         glsl_version_string = "version " + glsl_version_string
         
         var range = vertexShader_.rangesOfString("version 000")
-        vertexShader_.replaceRange(range[0], with: glsl_version_string)
-        vertexShader_.replaceRange(range[1], with: glsl_version_string)
+        vertexShader_.replaceSubrange(range[0], with: glsl_version_string)
+        vertexShader_.replaceSubrange(range[1], with: glsl_version_string)
         
         range = fragmentShader_.rangesOfString("version 000")
-        fragmentShader_.replaceRange(range[0], with: glsl_version_string)
-        fragmentShader_.replaceRange(range[1], with: glsl_version_string)
+        fragmentShader_.replaceSubrange(range[0], with: glsl_version_string)
+        fragmentShader_.replaceSubrange(range[1], with: glsl_version_string)
         
         var vertShader: GLuint = 0
         var fragShader: GLuint = 0
@@ -58,13 +58,13 @@ public class Shader {
         program = glCreateProgram()
         
         // Create and compile vertex shader.
-        if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), shaderString: vertexShader_) == false {
+        if self.compileShader(shader: &vertShader, type: GLenum(GL_VERTEX_SHADER), shaderString: vertexShader_) == false {
             print("Failed to compile vertex shader")
             return nil
         }
         
         // Create and compile fragment shader.
-        if !self.compileShader(&fragShader, type: GLenum(GL_FRAGMENT_SHADER), shaderString: fragmentShader_) {
+        if !self.compileShader(shader: &fragShader, type: GLenum(GL_FRAGMENT_SHADER), shaderString: fragmentShader_) {
             print("Failed to compile fragment shader")
             return nil
         }
@@ -120,10 +120,10 @@ public class Shader {
 //        self.validateProgram(program)
     }
     
-    func compileShader(inout shader: GLuint, type: GLenum, shaderString: String) -> Bool {
+    func compileShader(shader: inout GLuint, type: GLenum, shaderString: String) -> Bool {
         var status: GLint = 0
         
-        let source = UnsafeMutablePointer<Int8>.alloc(shaderString.characters.count)
+        let source = UnsafeMutablePointer<Int8>.allocate(capacity: shaderString.characters.count)
         let size = shaderString.characters.count
         var idx = 0
         for u in shaderString.utf8 {
@@ -132,28 +132,28 @@ public class Shader {
             idx += 1
         }
         source[idx] = 0 // NUL-terminate the C string in the array.
-        
-        var castSource = UnsafePointer<GLchar>(source)
-        
+
+        var castSource: UnsafePointer<GLchar>? = UnsafePointer<GLchar>(source)
+
         shader = glCreateShader(type)
         glShaderSource(shader, 1, &castSource, nil)
         glCompileShader(shader)
         
-        source.dealloc(shaderString.characters.count)
+        source.deallocate(capacity: shaderString.characters.count)
         
-        //        #if defined(DEBUG)
-        var logLength: GLint = 0
-        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-        if logLength > 0 {
-            let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength))) as UnsafeMutablePointer<Int8>
-            glGetShaderInfoLog(shader, logLength, &logLength, log)
-            
-            let logString = String.fromCString(log)
-            print(logString)
-            free(log)
-        }
-        //        #endif
-        
+//        #if defined(DEBUG)
+//        var logLength: GLint = 0
+//        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+//        if logLength > 0 {
+//            let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength))) as UnsafeMutablePointer<Int8>
+//            glGetShaderInfoLog(shader, logLength, &logLength, log)
+//            
+//            let logString = String.fromCString(log)
+//            print(logString)
+//            free(log)
+//        }
+//        #endif
+
         glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)
         if status == 0 {
             glDeleteShader(shader)
@@ -162,7 +162,7 @@ public class Shader {
         return true
     }
     
-    func linkProgram(prog: GLuint) -> Bool {
+    func linkProgram(_ prog: GLuint) -> Bool {
         var status: GLint = 0
         glLinkProgram(prog)
         
@@ -181,9 +181,9 @@ public class Shader {
         glValidateProgram(prog)
         glGetProgramiv(prog, GLenum(GL_INFO_LOG_LENGTH), &logLength)
         if logLength > 0 {
-            var log: [GLchar] = [GLchar](count: Int(logLength), repeatedValue: 0)
+            var log: [GLchar] = [GLchar](repeating: 0, count: Int(logLength))
             glGetProgramInfoLog(prog, logLength, &logLength, &log)
-            print("Program validate log: \n\(String.fromCString(log))")
+            print("Program validate log: \n\(String(cString:log))")
         }
         
         glGetProgramiv(prog, GLenum(GL_VALIDATE_STATUS), &status)

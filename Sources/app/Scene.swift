@@ -75,13 +75,17 @@ public class Scene: RenderObject {
         
         // Use shader
         shader.use()
-        
-        withUnsafePointer(&modelViewProjectionMatrix, {
-            glUniformMatrix4fv(shader.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, UnsafePointer($0))
+
+        withUnsafePointer(to: &modelViewProjectionMatrix, {
+            $0.withMemoryRebound(to: Float.self, capacity: 16, {
+                glUniformMatrix4fv(shader.uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, $0)
+            })
         })
-        
-        withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(shader.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, UnsafePointer($0))
+
+        withUnsafePointer(to: &normalMatrix, {
+            $0.withMemoryRebound(to: Float.self, capacity: 9, {
+                glUniformMatrix3fv(shader.uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, $0)
+            })
         })
         
         // Draw objects

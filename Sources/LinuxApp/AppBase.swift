@@ -17,9 +17,9 @@ import COpenGL.glx
     
 import utils
 
-public class AppBase: AppDelegate, MouseEventDelegate {
+open class AppBase: AppDelegate, MouseEventDelegate {
     
-    public var renderObject: RenderObject?
+    open var renderObject: RenderObject?
     
     var display:UnsafeMutablePointer<Display>!
     var screen:UnsafeMutablePointer<Screen>!
@@ -34,7 +34,7 @@ public class AppBase: AppDelegate, MouseEventDelegate {
     
     var buttonDownFlag:Int = 0
     
-    public init() {
+    open init() {
     
         self.display = XOpenDisplay(nil)
         self.screen = XDefaultScreenOfDisplay(display)
@@ -85,7 +85,7 @@ public class AppBase: AppDelegate, MouseEventDelegate {
     
     // AppDelegate functions
     
-    public func run() {
+    open func run() {
         
         let event = UnsafeMutablePointer<_XEvent>.alloc(1)
         let gwa = UnsafeMutablePointer<XWindowAttributes>.alloc(1)
@@ -153,10 +153,10 @@ public class AppBase: AppDelegate, MouseEventDelegate {
         exit(0)
     }
     
-    public func applicationCreate() {}
-    public func applicationClose() {}
+    open func applicationCreate() {}
+    open func applicationClose() {}
 
-    public func needsDisplay() {
+    open func needsDisplay() {
         glXMakeCurrent(display, window, glContext)
         if renderObject != nil {
             renderObject?.render()
@@ -164,14 +164,14 @@ public class AppBase: AppDelegate, MouseEventDelegate {
         glXSwapBuffers(display, window)
     }
     
-    public func windowDidResize(frame:Rect) {}
+    open func windowDidResize(frame:Rect) {}
     
     
     // MouseEventDelegate
     
-    public func mouseDown(point:Point, button:Int) {}
-    public func mouseMove(point:Point) {}
-    public func mouseUp(point:Point) {}
+    open func mouseDown(_ point:Point, button:Int) {}
+    open func mouseMove(_ point:Point) {}
+    open func mouseUp(_ point:Point) {}
     
 }
     

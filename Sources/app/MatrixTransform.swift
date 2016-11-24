@@ -17,7 +17,7 @@ import utils
 
 public let PI = 3.14159265358979323846264338327950288
 
-func degreesToRadians(degrees:Float) -> Float {
+func degreesToRadians(_ degrees:Float) -> Float {
     return degrees * (Float(PI) / 180)
 }
 
@@ -46,7 +46,7 @@ public struct vector_float3 {
         self.v = (__var,__var,__var)
     }
     
-    public func cross(vectorRight:vector_float3) -> vector_float3 {
+    public func cross(_ vectorRight:vector_float3) -> vector_float3 {
         return vector_float3( self.v.1 * vectorRight.v.2 - self.v.2 * vectorRight.v.1,
             self.v.2 * vectorRight.v.0 - self.v.0 * vectorRight.v.2,
             self.v.0 * vectorRight.v.1 - self.v.1 * vectorRight.v.0 );
@@ -56,7 +56,7 @@ public struct vector_float3 {
         return sqrtf(v.0 * v.0 + v.1 * v.1 + v.2 * v.2);
     }
     
-     func scale(s:Float) -> vector_float3 {
+     func scale(_ s:Float) -> vector_float3 {
         return vector_float3(v.0 * s, v.1 * s, v.2 * s)
     }
     
@@ -204,22 +204,22 @@ let matrix_identity_float3x3:float3x3 =
     float3(0.0, 1.0, 0.0),
     float3(0.0, 0.0, 1.0))
 
-func matrix_from_columns(c0:float4, _ c1:float4, _ c2: float4, _ c3: float4) -> float4x4 {
+func matrix_from_columns(_ c0:float4, _ c1:float4, _ c2: float4, _ c3: float4) -> float4x4 {
     return float4x4(c0, c1, c2, c3)
 }
 
 
-func matrix_from_columns(c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
+func matrix_from_columns(_ c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
     return float3x3(c0, c1, c2)
 }
 
-func matrix_from_rows(c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
+func matrix_from_rows(_ c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
     return float3x3(float3(c0.x, c1.x, c2.x), float3(c0.y, c1.y, c2.y), float3(c0.z, c1.z, c2.z))
 }
 
 // multiply
 
-func *(left: Float, right: float3) -> float3 {
+func *(_ left: Float, right: float3) -> float3 {
     var result:float3 = right
     result.x = result.x * left
     result.y = result.y * left
@@ -227,7 +227,7 @@ func *(left: Float, right: float3) -> float3 {
     return result
 }
 
-func *(matrixLeft: float4x4, matrixRight: float4x4) -> float4x4 {
+func *(_ matrixLeft: float4x4, matrixRight: float4x4) -> float4x4 {
 
     var m = float4x4(matrix_identity_float4x4)
     
@@ -254,22 +254,22 @@ func *(matrixLeft: float4x4, matrixRight: float4x4) -> float4x4 {
     return m
 }
 
-func *=(inout matrixLeft: float4x4, matrixRight: float4x4) {
+func *=(_ matrixLeft: inout float4x4, matrixRight: float4x4) {
     matrixLeft = (matrixLeft * matrixRight)
 }
 
-func length(vector:float3) -> Float {
+func length(_ vector:float3) -> Float {
     return sqrtf(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z)
 }
 
-func normalize(vector:float3) -> float3 {
+func normalize(_ vector:float3) -> float3 {
     let scale = 1.0 / length(vector)
     let v = float3( vector.x * scale, vector.y * scale, vector.z * scale )
     return v
 }
 
 
-func xRotation(radians:Float) -> float4x4 {
+func xRotation(_ radians:Float) -> float4x4 {
     let cos = cosf(radians)
     let sin = sinf(radians)
     let m = float4x4( 1.0, 0.0, 0.0, 0.0,
@@ -279,7 +279,7 @@ func xRotation(radians:Float) -> float4x4 {
     return m
 }
 
-func yRotation(radians:Float) -> float4x4 {
+func yRotation(_ radians:Float) -> float4x4 {
     let cos = cosf(radians)
     let sin = sinf(radians)
     let m = float4x4( cos, 0.0, -sin, 0.0,
@@ -289,7 +289,7 @@ func yRotation(radians:Float) -> float4x4 {
     return m
 }
 
-func zRotation(radians:Float) -> float4x4 {
+func zRotation(_ radians:Float) -> float4x4 {
     let cos = cosf(radians);
     let sin = sinf(radians);
     let m = float4x4(cos, sin, 0.0, 0.0,
@@ -300,7 +300,7 @@ func zRotation(radians:Float) -> float4x4 {
 }
 
 
-func perspective(fovyRadians:Float, aspect:Float , nearZ:Float , farZ:Float ) -> float4x4 {
+func perspective(_ fovyRadians:Float, aspect:Float , nearZ:Float , farZ:Float ) -> float4x4 {
     let yScale:Float = 1.0 / tanf(fovyRadians * 0.5)
     let xScale:Float = yScale / aspect
     
@@ -318,13 +318,13 @@ func perspective(fovyRadians:Float, aspect:Float , nearZ:Float , farZ:Float ) ->
     return float4x4(matrix_from_columns(P, Q, R, S))
 }
 
-func perspective(fovy:Float, width:Float, height:Float, near:Float, far:Float) -> float4x4 {
+func perspective(_ fovy:Float, width:Float, height:Float, near:Float, far:Float) -> float4x4 {
     let aspect = width / height
     return perspective(fovy, aspect:aspect, nearZ:near, farZ:far)
 }
 
 // scale
-func scale(s:float3) -> float4x4 {
+func scale(_ s:float3) -> float4x4 {
     var m = float4x4(matrix_identity_float4x4)
     m[0].x = s.x
     m[1].y = s.y
@@ -333,12 +333,12 @@ func scale(s:float3) -> float4x4 {
 }
 
 // scale
-func scale(x x:Float, y:Float, z:Float) -> float4x4 {
+func scale(_ x:Float, y:Float, z:Float) -> float4x4 {
     return scale(float3(x, y, z))
 }
 
 // translate
-func translate(t:float3) -> float4x4 {
+func translate(_ t:float3) -> float4x4 {
     var m = float4x4(matrix_identity_float4x4)
     m[3].x = t.x
     m[3].y = t.y
@@ -347,13 +347,13 @@ func translate(t:float3) -> float4x4 {
 }
 
 // translate
-func translate(x x:Float, y:Float, z:Float) -> float4x4 {
+func translate( x:Float, y:Float, z:Float) -> float4x4 {
     return translate(float3(x,y,z))
 }
 
 
 // rotate
-func rotate(angleRadians:Float, r:float3) -> float4x4 {
+func rotate(_ angleRadians:Float, r:float3) -> float4x4 {
     let a:Float = angleRadians
     let c:Float = cosf(a)
     let s:Float = sinf(a)
@@ -387,7 +387,7 @@ func rotate(angleRadians:Float, r:float3) -> float4x4 {
 }
 
 // rotate
-func rotate(angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4
+func rotate(_ angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4
 {
     let r = float3(x, y, z)
     return rotate(angleRadians, r:r)
@@ -395,7 +395,7 @@ func rotate(angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4
 
 
 // Construct a float 3x3 matrix from a 4x4 matrix
-func float4x4to3x3( transpose transpose:Bool, _ m:float4x4) -> float3x3
+func float4x4to3x3( transpose:Bool, _ m:float4x4) -> float3x3
 {
     let P:float3 = m[0].xyz
     let Q:float3 = m[1].xyz
@@ -412,7 +412,7 @@ func float4x4to3x3( transpose transpose:Bool, _ m:float4x4) -> float3x3
 }
 
 
-func transpose( matrix:float3x3) -> float3x3
+func transpose(_ matrix:float3x3) -> float3x3
 {
     var result:float3x3 = matrix;
     
@@ -426,7 +426,7 @@ func transpose( matrix:float3x3) -> float3x3
     return result;
 }
 
-func scale( matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
+func scale(_ matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
 {
     let m = float3x3( float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
         float3(matrix[1].x * sy, matrix[1].y * sy, matrix[1].z * sy),
@@ -434,7 +434,7 @@ func scale( matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
     return m;
 }
 
-func invert(matrix:float3x3, inout isInvertible:Bool) -> float3x3 {
+func invert(_ matrix:float3x3, isInvertible: inout Bool) -> float3x3 {
     let determinant:Float = (matrix[0].x * (matrix[1].y * matrix[2].z - matrix[1].z * matrix[2].y)) +
         (matrix[0].y * (matrix[1].z * matrix[2].x - matrix[2].z * matrix[1].x)) +
         (matrix[0].z * (matrix[1].x * matrix[2].y - matrix[1].y * matrix[2].x));
@@ -455,7 +455,7 @@ func invert(matrix:float3x3, inout isInvertible:Bool) -> float3x3 {
 // http://fossies.org/linux/privat/gfsview-snapshot-121130.tar.gz:a/gfsview-snapshot-121130/gl/trackball.c
 
 
-func tb_project_to_sphere(r:Float, _ x:Float, _ y:Float) -> Float
+func tb_project_to_sphere(_ r:Float, _ x:Float, _ y:Float) -> Float
 {
     var d:Float, t:Float, z:Float
     
@@ -469,7 +469,7 @@ func tb_project_to_sphere(r:Float, _ x:Float, _ y:Float) -> Float
     return z
 }
 
-func trackball(start start:Point, end:Point, trackSize:Float) -> quat
+func trackball(_ start:Point, end:Point, trackSize:Float) -> quat
 {
     var quat_result:quat
     
@@ -521,7 +521,7 @@ func trackball(start start:Point, end:Point, trackSize:Float) -> quat
 }
 
 
-func rotationMatrix(q:quat) -> float4x4 {
+func rotationMatrix(_ q:quat) -> float4x4 {
     
     var m = matrix_identity_float4x4
     

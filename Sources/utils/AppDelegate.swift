@@ -21,7 +21,7 @@ public protocol AppDelegate {
 
 
 public protocol MouseEventDelegate {
-    func mouseDown(point:Point, button:Int)
-    func mouseMove(point:Point)
-    func mouseUp(point:Point)
+    func mouseDown(_ point:Point, button:Int)
+    func mouseMove(_ point:Point)
+    func mouseUp(_ point:Point)
 }

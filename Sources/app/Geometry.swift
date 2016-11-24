@@ -15,9 +15,9 @@
     import Cocoa
 #endif
 
-func BUFFER_OFFSET(i: Int) -> UnsafePointer<Void> {
-    let p: UnsafePointer<Void> = nil
-    return p.advancedBy(i)
+func BUFFER_OFFSET(_ i: Int) -> UnsafeRawPointer? {
+    let off = UnsafeRawPointer(bitPattern: i)
+    return off
 }
 
 class Geometry {
@@ -38,8 +38,8 @@ class Geometry {
         
         glGenBuffers(1, &vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(sizeof(GLfloat) * Int(dataCount)), data, GLenum(GL_STATIC_DRAW))
-        
+        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(MemoryLayout<GLfloat>.size * Int(dataCount)), data, GLenum(GL_STATIC_DRAW))
+
         glEnableVertexAttribArray(Shader.positionAttribute)
         glVertexAttribPointer(Shader.positionAttribute, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, BUFFER_OFFSET(0))
         glEnableVertexAttribArray(Shader.normalAttribute)

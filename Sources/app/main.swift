@@ -21,10 +21,10 @@ func CreateApp() {
 #if os(Linux)
     
 #elseif os(OSX)
-    let application = NSApplication.sharedApplication()
-    application.setActivationPolicy(NSApplicationActivationPolicy.Regular)
+    let application = NSApplication.shared()
+    application.setActivationPolicy(NSApplicationActivationPolicy.regular)
     application.delegate = app
-    application.activateIgnoringOtherApps(true)
+    application.activate(ignoringOtherApps:true)
 #endif
     app.run()
 }

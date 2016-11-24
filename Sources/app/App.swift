@@ -42,16 +42,16 @@ class App: AppBase {
     
     }
     
-    override func windowDidResize(frame:Rect) {
-        scene.size = frame.size
+    override func windowDidResize(size:Rect) {
+        scene.size = size.size
     }
     
     // mouse events
-    override func mouseDown(point:Point, button:Int) {
+    override func mouseDown(_ point:Point, button:Int) {
         lastMousePoint = point
     }
     
-    override func mouseMove(point:Point) {
+    override func mouseMove(_ point:Point) {
 
         // trackball rotation, does not work really well
 //        let trackBallSize:Float = Float((scene.size.width + scene.size.height)/2)
@@ -73,7 +73,7 @@ class App: AppBase {
         needsDisplay()
     }
     
-    override func mouseUp(point:Point) {
+    override func mouseUp(_ point:Point) {
         
     }
     

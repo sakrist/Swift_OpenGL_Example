@@ -36,6 +36,13 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		D2AE6EE01DE6E71800576C6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D2C8BAEA1C32D8F300E646E4 /* LinuxApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -49,6 +56,7 @@
 			children = (
 				D2D25E481C3293A800FC3A59 /* Package.swift */,
 				D2D25E421C3293A300FC3A59 /* Sources */,
+				D2AE6EE01DE6E71800576C6B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +118,7 @@
 		D2D25E381C32934300FC3A59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					D2D25E3E1C32938D00FC3A59 = {
@@ -123,8 +132,10 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D2D25E371C32934300FC3A59;
+			productRefGroup = D2AE6EE01DE6E71800576C6B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

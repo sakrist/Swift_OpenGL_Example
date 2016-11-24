@@ -14,7 +14,7 @@
     
     import utils
     
-    public class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelegate, MouseEventDelegate {
+    open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelegate, MouseEventDelegate {
         var window: NSWindow!
         var glView: OpenGLView!
         public var renderObject: RenderObject? {
@@ -26,13 +26,13 @@
         public override init() {
             self.renderObject = nil
             
-            let window = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480), styleMask: NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask, backing: .Buffered, defer: false)
+            let window = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480), styleMask: [NSWindowStyleMask.titled, NSWindowStyleMask.closable, NSWindowStyleMask.miniaturizable, NSWindowStyleMask.resizable], backing: .buffered, defer: false)
             window.center()
             window.title = "OpenGL Example Swift"
             self.window = window
         }
         
-        public func applicationDidFinishLaunching(notification: NSNotification) {
+        open func applicationDidFinishLaunching(_ aNotification: Notification) {
             
             var rect = window.frame
             rect.origin.x = 0.0
@@ -41,7 +41,7 @@
             let glview = OpenGLView(frame:rect)
             glview.application = self
             glview.createGL()
-            glview.autoresizingMask = [.ViewWidthSizable, .ViewHeightSizable]
+            glview.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
             self.glView = glview;
             self.window?.contentView?.addSubview(glview)
             
@@ -53,36 +53,36 @@
             self.applicationCreate()            
         }
         
-        public func windowWillClose(notification: NSNotification) {
+        open func windowWillClose(_ notification: Notification) {
             self.applicationClose()
-            NSApplication.sharedApplication().terminate(0)
+            NSApplication.shared().terminate(0)
         }
         
-        public func windowDidResize(notification: NSNotification) {
+        open func windowDidResize(_ notification: Notification) {
             let rect = window.frame
             let frame = Rect(Double(rect.origin.x), Double(rect.origin.y), Double(rect.size.width), Double(rect.size.height))
-            self.windowDidResize(frame)
+            self.windowDidResize(size:frame)
         }
         
-        public func run() {
-            NSApplication.sharedApplication().run()
+        open func run() {
+            NSApplication.shared().run()
         }
         
         // base functions
-        public func applicationCreate() {}
-        public func applicationClose() {}
+        open func applicationCreate() {}
+        open func applicationClose() {}
         
-        public func needsDisplay() {
+        open func needsDisplay() {
            glView.display()
         }
         
-        public func windowDidResize(size:Rect) {}
+        open func windowDidResize(size:Rect) {}
         
         // MouseEventDelegate
         
-        public func mouseDown(point:Point, button:Int) {}
-        public func mouseMove(point:Point) {}
-        public func mouseUp(point:Point) {}
+        open func mouseDown(_ point:Point, button:Int) {}
+        open func mouseMove(_ point:Point) {}
+        open func mouseUp(_ point:Point) {}
         
     }
     

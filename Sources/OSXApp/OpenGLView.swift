@@ -44,7 +44,7 @@ class OpenGLView: NSOpenGLView
     
     var application:AppBase?
 
-    override var flipped:Bool {
+    override var isFlipped:Bool {
         get {
             return true
         }
@@ -67,7 +67,7 @@ class OpenGLView: NSOpenGLView
         ]
 
         let format = NSOpenGLPixelFormat(attributes: attr)
-        let context = NSOpenGLContext(format: format!, shareContext: nil)
+        let context = NSOpenGLContext(format: format!, share: nil)
 
         self.openGLContext = context
         self.openGLContext?.makeCurrentContext()
@@ -90,7 +90,7 @@ class OpenGLView: NSOpenGLView
         }
         
         // Create new tracking area.
-        let options: NSTrackingAreaOptions = [NSTrackingAreaOptions.MouseMoved, NSTrackingAreaOptions.MouseEnteredAndExited, NSTrackingAreaOptions.ActiveWhenFirstResponder]
+        let options: NSTrackingAreaOptions = [NSTrackingAreaOptions.mouseMoved, NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeWhenFirstResponder]
         trackingArea = NSTrackingArea(rect: frame, options: options, owner: self, userInfo: nil)
     }
 
@@ -98,10 +98,10 @@ class OpenGLView: NSOpenGLView
         return true
     }
 
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(with event: NSEvent) {
         // Close the window when the escape key is pressed.
-        if theEvent.keyCode == 0x35 {
-            NSApplication.sharedApplication().keyWindow?.close()
+        if event.keyCode == 0x35 {
+            NSApplication.shared().keyWindow?.close()
         }
     }
 
@@ -122,31 +122,31 @@ class OpenGLView: NSOpenGLView
     // We draw on a secondary thread through the display link
     // When resizing the view, -reshape is called automatically on the main thread
     // Add a mutex around to avoid the threads accessing the context simultaneously	when resizing
-        CGLLockContext(context.CGLContextObj)
+        CGLLockContext(context.cglContextObj!)
         
         if renderObject != nil {
             renderObject?.render()
         }
         
         self.flush()
-        CGLUnlockContext(context.CGLContextObj)
+        CGLUnlockContext(context.cglContextObj!)
     }
     
     
-    override func mouseDown(event: NSEvent) {
-        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+    override func mouseDown(with event: NSEvent) {
+        let p = self.convert(event.locationInWindow, from:self);
         let point = Point(Double(p.x), Double(p.y))
         application?.mouseDown(point, button:1)
     }
 
-    override func mouseUp(event: NSEvent) {
-        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+    override func mouseUp(with event: NSEvent) {
+        let p = self.convert(event.locationInWindow, from:nil);
         let point = Point(Double(p.x), Double(p.y))
         application?.mouseUp(point)
     }
 
-    override func mouseDragged(event: NSEvent) {
-        let p = self.convertPoint(event.locationInWindow,fromView:nil);
+    override func mouseDragged(with event: NSEvent) {
+        let p = self.convert(event.locationInWindow,from:nil);
         let point = Point(Double(p.x), Double(p.y))
         application?.mouseMove(point)
     }
