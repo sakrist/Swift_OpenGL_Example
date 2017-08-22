@@ -1,0 +1,18 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "COpenGL.swift",
+      "reason": null,
+      "repositoryURL": "https://github.com/sakrist/COpenGL.swift.git",
+      "version": "1.0.4"
+    },
+    {
+      "package": "CX11.swift",
+      "reason": null,
+      "repositoryURL": "https://github.com/sakrist/CX11.swift.git",
+      "version": "1.0.2"
+    }
+  ],
+  "version": 1
+}

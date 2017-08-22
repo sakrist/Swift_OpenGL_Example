@@ -31,106 +31,106 @@ open class AppBase: AppDelegate, MouseEventDelegate {
     var glContext:GLXContext!
     
     var frame:Rect = Rect(0.0, 0.0, 640, 480)
-    
+
     var buttonDownFlag:Int = 0
-    
-    open init() {
-    
+
+    public init() {
+
         self.display = XOpenDisplay(nil)
         self.screen = XDefaultScreenOfDisplay(display)
-        self.rootWindow = screen.memory.root
-        
-        let att = UnsafeMutablePointer<Int32>.alloc(5)
+        self.rootWindow = screen.pointee.root
+
+        let att = UnsafeMutablePointer<Int32>.allocate(capacity:5)
         att[0] = GLX_RGBA
         att[1] = GLX_DEPTH_SIZE
         att[2] = 24
         att[3] = GLX_DOUBLEBUFFER
         att[4] = 0
-        
+
         self.visInfo = glXChooseVisual(display, 0, att)
-        
-        att.dealloc(5)
-        
+
+        att.deallocate(capacity:5)
+
         if(visInfo == nil) {
             print("No appropriate visual found")
             exit(0)
         }
         else {
-            print("visual \(visInfo.memory.visualid)")
-        }        
-        
+            print("visual \(visInfo.pointee.visualid)")
+        }
+
         // create window
-        let cmap = XCreateColormap(display, rootWindow, visInfo.memory.visual, AllocNone)
+        let cmap = XCreateColormap(display, rootWindow, visInfo.pointee.visual, AllocNone)
         var swa:XSetWindowAttributes = XSetWindowAttributes()
         swa.colormap = cmap
         swa.event_mask = ExposureMask | KeyPressMask | PointerMotionMask | ButtonPressMask | ButtonReleaseMask
-        
+
         self.window = XCreateWindow(display, rootWindow,
             Int32(frame.origin.x), Int32(frame.origin.y),
-            UInt32(frame.size.width), UInt32(frame.size.height), 0, visInfo.memory.depth,
-            UInt32(InputOutput), visInfo.memory.visual,
+            UInt32(frame.size.width), UInt32(frame.size.height), 0, visInfo.pointee.depth,
+            UInt32(InputOutput), visInfo.pointee.visual,
             UInt(CWColormap) | UInt(CWEventMask), &swa)
-        
+
         XMapWindow(display, window)
         XStoreName(display, window, "OpenGL Example Swift")
-    
+
         // create gl context
         glContext = glXCreateContext(display, visInfo, nil, GL_TRUE)
         glXMakeCurrent(display, window, glContext)
 
         self.applicationCreate()
     }
-    
-    
-    
+
+
+
     // AppDelegate functions
-    
+
     open func run() {
-        
-        let event = UnsafeMutablePointer<_XEvent>.alloc(1)
-        let gwa = UnsafeMutablePointer<XWindowAttributes>.alloc(1)
-        
+
+        let event = UnsafeMutablePointer<_XEvent>.allocate(capacity:1)
+        let gwa = UnsafeMutablePointer<XWindowAttributes>.allocate(capacity:1)
+
         loop: while true {
             // Wait for the next event
             XNextEvent(display, event)
-            
-            switch event.memory.type {
-            
+
+            switch event.pointee.type {
+
                 // The window has to be drawn
             case Expose:
                 XGetWindowAttributes(display, window, gwa)
-                let width = Double(gwa.memory.width)
-                let height = Double(gwa.memory.height)
+                let width = Double(gwa.pointee.width)
+                let height = Double(gwa.pointee.height)
                 if frame.size.width != width || frame.size.height != height {
                     frame.size = Size(width, height)
-                    self.windowDidResize(frame)
-                    glViewport(0, 0, gwa.memory.width, gwa.memory.height)
+                    self.windowDidResize(size:frame)
+                    glViewport(0, 0, gwa.pointee.width, gwa.pointee.height)
                 }
 
                 self.needsDisplay()
-                
+
                 break
-                
+
             case MotionNotify:
                 if buttonDownFlag != 0 {
-                    mouseMove(Point(Double(event.memory.xmotion.x), Double(event.memory.xmotion.y)))
+                    mouseMove(Point(Double(event.pointee.xmotion.x), Double(event.pointee.xmotion.y)))
                 }
-                
+
                 break
             case ButtonPress:
-                mouseDown(Point(Double(event.memory.xbutton.x), Double(event.memory.xbutton.y)), button:Int(event.memory.xbutton.button))
-                buttonDownFlag |= Int(event.memory.xbutton.button)
+                mouseDown(Point(Double(event.pointee.xbutton.x), Double(event.pointee.xbutton.y)), button:Int(event.pointee.xbutton.button))
+                buttonDownFlag |= Int(event.pointee.xbutton.button)
                 break
             case ButtonRelease:
-                mouseUp(Point(Double(event.memory.xbutton.x), Double(event.memory.xbutton.y)))
-                buttonDownFlag = buttonDownFlag ^ Int(event.memory.xbutton.button)
+                mouseUp(Point(Double(event.pointee.xbutton.x), Double(event.pointee.xbutton.y)))
+                buttonDownFlag = buttonDownFlag ^ Int(event.pointee.xbutton.button)
                 break
-                
+
                 // The user did press
             case KeyPress:
-                
+
                 // close app by cntrl+q
-                if((event.memory.xkey.keycode == 24 && event.memory.xkey.state == 4))
+                if((event.pointee.xkey.keycode == 24 && event.pointee.xkey.state == 4))
                 {
                     glXMakeCurrent(display, 0, nil)
                     glXDestroyContext(display, glContext)
@@ -138,21 +138,21 @@ open class AppBase: AppDelegate, MouseEventDelegate {
                     XCloseDisplay(display)
                     break loop
                 }
-                
+
                 // We never signed up for this event
-            default: print("\(event.memory)")
-                
+            default: print("\(event.pointee)")
+
             }
         }
-        
+
         self.applicationClose()
-        
-        event.dealloc(1)
-        gwa.dealloc(1)
+
+        event.deallocate(capacity:1)
+        gwa.deallocate(capacity:1)
 
         exit(0)
     }
-    
+
     open func applicationCreate() {}
     open func applicationClose() {}
 
@@ -163,16 +163,16 @@ open class AppBase: AppDelegate, MouseEventDelegate {
         }
         glXSwapBuffers(display, window)
     }
-    
-    open func windowDidResize(frame:Rect) {}
-    
-    
+
+    open func windowDidResize(size:Rect) {}
+
+
     // MouseEventDelegate
-    
+
     open func mouseDown(_ point:Point, button:Int) {}
     open func mouseMove(_ point:Point) {}
     open func mouseUp(_ point:Point) {}
-    
+
 }
-    
+
 #endif
