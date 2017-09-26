@@ -49,11 +49,11 @@ public struct vector_float3 {
     public func cross(_ vectorRight:vector_float3) -> vector_float3 {
         return vector_float3( self.v.1 * vectorRight.v.2 - self.v.2 * vectorRight.v.1,
             self.v.2 * vectorRight.v.0 - self.v.0 * vectorRight.v.2,
-            self.v.0 * vectorRight.v.1 - self.v.1 * vectorRight.v.0 );
+            self.v.0 * vectorRight.v.1 - self.v.1 * vectorRight.v.0 )
     }
     
     public func length() -> Float {
-        return sqrtf(v.0 * v.0 + v.1 * v.1 + v.2 * v.2);
+        return sqrtf(v.0 * v.0 + v.1 * v.1 + v.2 * v.2)
     }
     
      func scale(_ s:Float) -> vector_float3 {
@@ -61,13 +61,13 @@ public struct vector_float3 {
     }
     
     public func normalize() -> vector_float3 {
-        let s = 1.0 / self.length();
+        let s = 1.0 / self.length()
         return self.scale(s)
     }
 }
 
 func -(vectorLeft:vector_float3, vectorRight:vector_float3) -> vector_float3 {
-    return vector_float3( vectorLeft.v.0 - vectorRight.v.0, vectorLeft.v.1 - vectorRight.v.1 , vectorLeft.v.2 - vectorRight.v.2 );
+    return vector_float3( vectorLeft.v.0 - vectorRight.v.0, vectorLeft.v.1 - vectorRight.v.1 , vectorLeft.v.2 - vectorRight.v.2 )
 }
 
 
@@ -290,8 +290,8 @@ func yRotation(_ radians:Float) -> float4x4 {
 }
 
 func zRotation(_ radians:Float) -> float4x4 {
-    let cos = cosf(radians);
-    let sin = sinf(radians);
+    let cos = cosf(radians)
+    let sin = sinf(radians)
     let m = float4x4(cos, sin, 0.0, 0.0,
         -sin, cos, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
@@ -414,41 +414,39 @@ func float4x4to3x3( transpose:Bool, _ m:float4x4) -> float3x3
 
 func transpose(_ matrix:float3x3) -> float3x3
 {
-    var result:float3x3 = matrix;
-    
-    result[0].y = matrix[1].x;
-    result[0].z = matrix[2].x;
-    result[1].x = matrix[0].y;
-    result[1].z = matrix[2].y;
-    result[2].x = matrix[0].z;
-    result[2].y = matrix[1].z;
-    
-    return result;
+    var result:float3x3 = matrix
+    result[0].y = matrix[1].x
+    result[0].z = matrix[2].x
+    result[1].x = matrix[0].y
+    result[1].z = matrix[2].y
+    result[2].x = matrix[0].z
+    result[2].y = matrix[1].z
+    return result
 }
 
 func scale(_ matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
 {
     let m = float3x3( float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
         float3(matrix[1].x * sy, matrix[1].y * sy, matrix[1].z * sy),
-        float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ));
-    return m;
+        float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ))
+    return m
 }
 
 func invert(_ matrix:float3x3, isInvertible: inout Bool) -> float3x3 {
-    let determinant:Float = (matrix[0].x * (matrix[1].y * matrix[2].z - matrix[1].z * matrix[2].y)) +
-        (matrix[0].y * (matrix[1].z * matrix[2].x - matrix[2].z * matrix[1].x)) +
-        (matrix[0].z * (matrix[1].x * matrix[2].y - matrix[1].y * matrix[2].x));
+    var determinant:Float = (matrix[0].x * (matrix[1].y * matrix[2].z - matrix[1].z * matrix[2].y))
+    determinant += (matrix[0].y * (matrix[1].z * matrix[2].x - matrix[2].z * matrix[1].x))
+    determinant += (matrix[0].z * (matrix[1].x * matrix[2].y - matrix[1].y * matrix[2].x))
     
-    let canInvert:Bool = (determinant != 0.0);
+    let canInvert:Bool = (determinant != 0.0)
     if (isInvertible) {
-        isInvertible = canInvert;
+        isInvertible = canInvert
     }
     
     if (!canInvert) {
-        return matrix_identity_float3x3;
+        return matrix_identity_float3x3
     }
     
-    return scale(transpose(matrix), sx:determinant, sy:determinant, sz:determinant);
+    return scale(transpose(matrix), sx:determinant, sy:determinant, sz:determinant)
 }
 
 // Source of trackball
