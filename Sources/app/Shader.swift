@@ -51,7 +51,7 @@ public class Shader {
         var glsl_version_string = String(cString:glsl_version_cstring)
         
         // test if it's ES
-        let isES = glsl_version_string.contains("ES")
+        let isES = (glsl_version_string.rangesOfString("ES").count != 0)
         
         if let lastString = glsl_version_string.split(separator: " ").last {
             glsl_version_string = String.init(lastString)
