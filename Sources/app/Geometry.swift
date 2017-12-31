@@ -13,6 +13,8 @@
 #elseif os(OSX)
     import Darwin.C
     import Cocoa
+#elseif os(iOS)
+    import OpenGLES
 #endif
 
 func BUFFER_OFFSET(_ i: Int) -> UnsafeRawPointer? {

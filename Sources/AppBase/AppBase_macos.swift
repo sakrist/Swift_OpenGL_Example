@@ -7,15 +7,14 @@
 //
 
 #if os(OSX)
+    
 import Darwin.C
 import Foundation
 import AppKit
 import Cocoa
 
-import utils
-
 open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelegate, MouseEventDelegate {
-    @IBOutlet var window: NSWindow!
+    var window: NSWindow!
     var glView: OpenGLView!
     public var renderObject: RenderObject? {
         didSet {
@@ -24,12 +23,18 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
     }
     
     public override init() {
+        super.init()
         self.renderObject = nil
         
         let window = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480), styleMask: [NSWindowStyleMask.titled, NSWindowStyleMask.closable, NSWindowStyleMask.miniaturizable, NSWindowStyleMask.resizable], backing: .buffered, defer: false)
         window.center()
         window.title = "OpenGL Example Swift"
         self.window = window
+        
+        let application = NSApplication.shared()
+        application.setActivationPolicy(NSApplicationActivationPolicy.regular)
+        application.delegate = self
+        application.activate(ignoringOtherApps:true)
     }
     
     open func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -59,9 +64,8 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
     }
     
     open func windowDidResize(_ notification: Notification) {
-        let rect = window.frame
-        let frame = Rect(Double(rect.origin.x), Double(rect.origin.y), Double(rect.size.width), Double(rect.size.height))
-        self.windowDidResize(size:frame)
+        let size = Size(Double(window.frame.size.width), Double(window.frame.size.height))
+        self.windowDidResize(size)
     }
     
     open func run() {
@@ -76,7 +80,7 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
        glView.display()
     }
     
-    open func windowDidResize(size:Rect) {}
+    open func windowDidResize(_ size:Size) {}
     
     // MouseEventDelegate
     

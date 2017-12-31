@@ -27,16 +27,12 @@
  */
 
 
-
 #if os(OSX)
 import Cocoa
 import AppKit
 import GLKit
-    
-import utils
 
-class OpenGLView: NSOpenGLView
-{
+class OpenGLView: NSOpenGLView {
 
     private var trackingArea: NSTrackingArea?
     
@@ -50,8 +46,7 @@ class OpenGLView: NSOpenGLView
         }
     }
     
-    func createGL()
-    {
+    func createGL() {
 
         let attr = [
             NSOpenGLPixelFormatAttribute(NSOpenGLPFAOpenGLProfile),
@@ -105,8 +100,7 @@ class OpenGLView: NSOpenGLView
         }
     }
 
-    func flush()
-    {
+    func flush() {
         self.context().flushBuffer()
     }
     

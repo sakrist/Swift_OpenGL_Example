@@ -14,7 +14,7 @@ public protocol AppDelegate {
     
     func needsDisplay()
     
-    func windowDidResize(size:Rect)
+    func windowDidResize(_ size:Size)
     
     func run()
 }

@@ -10,10 +10,11 @@
     import Glibc
 #elseif os(OSX)
     import Darwin.C
+#elseif os(iOS)
+    import OpenGLES
 #endif
 
-import utils
-
+import AppBase
 
 public let PI = 3.14159265358979323846264338327950288
 
@@ -42,6 +43,11 @@ public struct vector_float3 {
     public init(_ __x:Float, _ __y:Float, _ __z:Float) {
         self.v = (__x,__y,__z)
     }
+    
+    public init(_ __x:Double, _ __y:Double, _ __z:Double) {
+        self.v = (Float(__x), Float(__y), Float(__z))
+    }
+    
     public init(_ __var:Float) {
         self.v = (__var,__var,__var)
     }
@@ -99,6 +105,9 @@ public struct vector_float4 {
     
     public init(_ __x:Float, _ __y:Float, _ __z:Float, _ __w:Float) {
         self.v = (__x, __y, __z, __w)
+    }
+    public init(_ __x:Double, _ __y:Double, _ __z:Double, _ __w:Double) {
+        self.v = (Float(__x), Float(__y), Float(__z), Float(__w))
     }
     public init(_ __var:Float) {
         self.v = (__var, __var, __var, __var)
@@ -164,6 +173,15 @@ public struct matrix_float4x4 {
         _ m12: Float, _ m13: Float, _ m14: Float, _ m15: Float) {
         self.columns = ( float4(m0,m1,m2,m3), float4(m4,m5,m6,m7), float4(m8,m9,m10,m11), float4(m12,m13,m14,m15) )
     }
+    public init(_ m0: Double, _ m1: Double, _ m2: Double, _ m3: Double,
+                _ m4: Double, _ m5: Double, _ m6: Double, _ m7: Double,
+                _ m8: Double, _ m9: Double, _ m10: Double, _ m11: Double,
+                _ m12: Double, _ m13: Double, _ m14: Double, _ m15: Double) {
+        self.columns = ( float4(m0,m1,m2,m3), 
+                         float4(m4,m5,m6,m7), 
+                         float4(m8,m9,m10,m11), 
+                         float4(m12,m13,m14,m15) )
+    }
     
     public init() {
         self.columns = (float4(0.0), float4(0.0), float4(0.0), float4(0.0))
@@ -193,28 +211,28 @@ public typealias float4x4 = matrix_float4x4
 
 
 
-let matrix_identity_float4x4:float4x4 =
-    float4x4(float4(1.0, 0.0, 0.0, 0.0),
-    float4(0.0, 1.0, 0.0, 0.0),
-    float4(0.0, 0.0, 1.0, 0.0),
-    float4(0.0, 0.0, 0.0, 1.0))
+let matrix_identity_float4x4 =
+    float4x4(1.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0)
 
-let matrix_identity_float3x3:float3x3 =
-    float3x3(float3(1.0, 0.0, 0.0),
+let matrix_identity_float3x3 =
+    float3x3((float3(1.0, 0.0, 0.0),
     float3(0.0, 1.0, 0.0),
-    float3(0.0, 0.0, 1.0))
+    float3(0.0, 0.0, 1.0)))
 
 func matrix_from_columns(_ c0:float4, _ c1:float4, _ c2: float4, _ c3: float4) -> float4x4 {
-    return float4x4(c0, c1, c2, c3)
+    return float4x4((c0, c1, c2, c3))
 }
 
 
 func matrix_from_columns(_ c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
-    return float3x3(c0, c1, c2)
+    return float3x3((c0, c1, c2))
 }
 
 func matrix_from_rows(_ c0:float3, _ c1:float3, _ c2: float3) -> float3x3 {
-    return float3x3(float3(c0.x, c1.x, c2.x), float3(c0.y, c1.y, c2.y), float3(c0.z, c1.z, c2.z))
+    return float3x3((float3(c0.x, c1.x, c2.x), float3(c0.y, c1.y, c2.y), float3(c0.z, c1.z, c2.z)))
 }
 
 // multiply
@@ -426,9 +444,9 @@ func transpose(_ matrix:float3x3) -> float3x3
 
 func scale(_ matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
 {
-    let m = float3x3( float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
+    let m = float3x3( (float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
         float3(matrix[1].x * sy, matrix[1].y * sy, matrix[1].z * sy),
-        float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ))
+        float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ) ) )
     return m
 }
 

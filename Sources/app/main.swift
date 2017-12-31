@@ -6,28 +6,22 @@
 //
 //
 
+// This file only for macOS and iOS
+
 #if os(Linux)
     import Glibc
-    import LinuxApp
 #elseif os(OSX)
     import Darwin.C
     import Cocoa
-    import OSXApp
 #endif
 
-func CreateApp() {
-    
+import AppBase
+
+func main() {    
     let app = App()
-#if os(Linux)
-    
-#elseif os(OSX)
-    let application = NSApplication.shared()
-    application.setActivationPolicy(NSApplicationActivationPolicy.regular)
-    application.delegate = app
-    application.activate(ignoringOtherApps:true)
-#endif
     app.run()
+    
 }
 
+main()
 
-CreateApp()

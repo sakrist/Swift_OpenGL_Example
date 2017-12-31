@@ -11,20 +11,20 @@ public extension String {
         var arr = [Range<String.Index>]()
         var startInd = self.startIndex
         // check first that the first character of search string exists
-        if self.characters.contains(findStr.characters.first!) {
+        if self.contains(findStr.first!) {
             // if so set this as the place to start searching
-            startInd = self.characters.index(of:findStr.characters.first!)!
+            startInd = self.index(of:findStr.first!)!
         }
         else {
             // if not return empty array
             return arr
         }
         var i = distance(from:self.startIndex, to:startInd)
-        while i<=self.characters.count-findStr.characters.count {
-            if self[self.index(self.startIndex, offsetBy:i)..<self.index(self.startIndex, offsetBy:i+findStr.characters.count)] == findStr {
-                let r = self.index(self.startIndex, offsetBy:i) ..< self.index(self.startIndex, offsetBy: i+findStr.characters.count)
+        while i<=self.count-findStr.count {
+            if self[self.index(self.startIndex, offsetBy:i)..<self.index(self.startIndex, offsetBy:i+findStr.count)] == findStr {
+                let r = self.index(self.startIndex, offsetBy:i) ..< self.index(self.startIndex, offsetBy: i+findStr.count)
                 arr.append(r)
-                i = i+findStr.characters.count
+                i = i+findStr.count
             }
             else {
                 i += 1

@@ -13,10 +13,11 @@
 #elseif os(OSX)
     import Darwin.C
     import Cocoa
+#elseif os(iOS)
+    import OpenGLES
 #endif
 
-
-import utils
+import AppBase
 
 
 public class Scene: RenderObject {
@@ -97,8 +98,11 @@ public class Scene: RenderObject {
 
 
 var vertexShader = "#version 000  \n"
-    + "#define version 000 \n"
+    + "// macroses \n"
     + "\n"
+    + "#if defined(GL_ES)\n"
+    + "precision highp float;\n"
+    + "#endif\n"
     + "#if version>130 \n"
     + "#define attribute in \n"
     + "#define varying out \n"
@@ -127,7 +131,11 @@ var vertexShader = "#version 000  \n"
 
 
 var fragmentShader = "#version 000\n"
-    + "#define version 000 \n"
+    + "// macroses \n"
+    + "\n"
+    + "#if defined(GL_ES)\n"
+    + "precision mediump float;\n"
+    + "#endif\n"
     + "\n"
     + "#if version>130 \n"
     + "#define varying in \n"

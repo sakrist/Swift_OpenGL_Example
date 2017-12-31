@@ -15,8 +15,6 @@ import CX11.Xlib
 import COpenGL.gl
 import COpenGL.glx
     
-import utils
-
 open class AppBase: AppDelegate, MouseEventDelegate {
     
     open var renderObject: RenderObject?
@@ -103,7 +101,7 @@ open class AppBase: AppDelegate, MouseEventDelegate {
                 let height = Double(gwa.pointee.height)
                 if frame.size.width != width || frame.size.height != height {
                     frame.size = Size(width, height)
-                    self.windowDidResize(size:frame)
+                    self.windowDidResize(frame.size)
                     glViewport(0, 0, gwa.pointee.width, gwa.pointee.height)
                 }
 
@@ -164,7 +162,7 @@ open class AppBase: AppDelegate, MouseEventDelegate {
         glXSwapBuffers(display, window)
     }
 
-    open func windowDidResize(size:Rect) {}
+    open func windowDidResize(_ size:Size) {}
 
 
     // MouseEventDelegate

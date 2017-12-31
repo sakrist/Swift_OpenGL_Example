@@ -12,12 +12,22 @@
 #elseif os(OSX)
     import Darwin.C
     import GLKit
+#elseif os(iOS)
+    import OpenGLES
+    import OpenGLES.ES3
 #endif
+
+public func isGLOn() -> Bool {
+    let v = glGetString(GLenum(GL_VERSION))
+    if (v != nil) {
+        return true
+    }
+    return false
+} 
 
 
 public let UNIFORM_MODELVIEWPROJECTION_MATRIX = 0
 public let UNIFORM_NORMAL_MATRIX = 1
-
 
 public class Shader {
     
@@ -40,16 +50,47 @@ public class Shader {
         let glsl_version_cstring = glGetString(GLenum(GL_SHADING_LANGUAGE_VERSION)) as UnsafePointer<UInt8>
         var glsl_version_string = String(cString:glsl_version_cstring)
         
-        glsl_version_string.remove(at:glsl_version_string.index(glsl_version_string.startIndex, offsetBy: 1)) // delete point 1.30 -> 130
-        glsl_version_string = "version " + glsl_version_string
+        // test if it's ES
+        let isES = glsl_version_string.contains("ES")
         
+        if let lastString = glsl_version_string.split(separator: " ").last {
+            glsl_version_string = String.init(lastString)
+        }
+        glsl_version_string.remove(at:glsl_version_string.index(glsl_version_string.startIndex, offsetBy: 1)) // delete point 1.30 -> 130
+        
+        // get version into Int value
+        let glslVersion = Int(glsl_version_string) ?? 0
+        
+        // form string for replacement
+        glsl_version_string = "version " + glsl_version_string + ((isES && glslVersion > 100) ? " es" : "" ) 
+        
+        // replace version
         var range = vertexShader_.rangesOfString("version 000")
-        vertexShader_.replaceSubrange(range[0], with: glsl_version_string)
-        vertexShader_.replaceSubrange(range[1], with: glsl_version_string)
+        for r in range {
+            vertexShader_.replaceSubrange(r, with: glsl_version_string)
+        }
         
         range = fragmentShader_.rangesOfString("version 000")
-        fragmentShader_.replaceSubrange(range[0], with: glsl_version_string)
-        fragmentShader_.replaceSubrange(range[1], with: glsl_version_string)
+        for r in range {
+            fragmentShader_.replaceSubrange(r, with: glsl_version_string)
+        }
+        
+        // create macro for version
+        let glslVersionMacro = "version \(glslVersion)"
+        
+        // create macorses string
+        let macroses = "#define " + glslVersionMacro + "\n"
+        
+        // set macroses
+        range = vertexShader_.rangesOfString("// macroses")
+        for r in range {
+            vertexShader_.replaceSubrange(r, with: macroses)
+        }
+        
+        range = fragmentShader_.rangesOfString("// macroses")
+        for r in range {
+            fragmentShader_.replaceSubrange(r, with: macroses)
+        }
         
         var vertShader: GLuint = 0
         var fragShader: GLuint = 0
@@ -60,6 +101,7 @@ public class Shader {
         // Create and compile vertex shader.
         if self.compileShader(shader: &vertShader, type: GLenum(GL_VERTEX_SHADER), shaderString: vertexShader_) == false {
             print("Failed to compile vertex shader")
+            print(vertexShader_)
             return nil
         }
         
@@ -80,9 +122,11 @@ public class Shader {
         glBindAttribLocation(self.program, Shader.positionAttribute, "position")
         glBindAttribLocation(self.program, Shader.normalAttribute, "normal")
         
-        
-        glBindFragDataLocation(self.program, 0, "glFragData0");
-        
+        #if os(iOS)
+            glGetFragDataLocation(self.program, "glFragData0");
+        #else
+            glBindFragDataLocation(self.program, 0, "glFragData0");
+        #endif
         // Link program.
         if !self.linkProgram(self.program) {
             print("Failed to link program: \(self.program)")
@@ -123,8 +167,8 @@ public class Shader {
     func compileShader(shader: inout GLuint, type: GLenum, shaderString: String) -> Bool {
         var status: GLint = 0
         
-        let source = UnsafeMutablePointer<Int8>.allocate(capacity: shaderString.characters.count)
-        let size = shaderString.characters.count
+        let source = UnsafeMutablePointer<Int8>.allocate(capacity: shaderString.count)
+        let size = shaderString.count
         var idx = 0
         for u in shaderString.utf8 {
             if idx == size - 1 { break }
@@ -139,19 +183,19 @@ public class Shader {
         glShaderSource(shader, 1, &castSource, nil)
         glCompileShader(shader)
         
-        source.deallocate(capacity: shaderString.characters.count)
+        source.deallocate(capacity: shaderString.count)
         
 //        #if defined(DEBUG)
-//        var logLength: GLint = 0
-//        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-//        if logLength > 0 {
-//            let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength))) as UnsafeMutablePointer<Int8>
-//            glGetShaderInfoLog(shader, logLength, &logLength, log)
-//            
-//            let logString = String.fromCString(log)
-//            print(logString)
-//            free(log)
-//        }
+        var logLength: GLint = 0
+        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+        if logLength > 0 {
+            var log = [GLchar](repeating: 0, count: 512)
+            glGetShaderInfoLog(shader, 512, &logLength, &log)
+            
+            let logString = String(cString:log)
+            print(logString)
+            
+        }
 //        #endif
 
         glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)

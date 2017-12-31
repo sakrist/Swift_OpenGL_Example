@@ -8,18 +8,25 @@
 
 #if os(Linux)
     import Glibc
-    import LinuxApp
 #elseif os(OSX)
     import Darwin.C
-    import OSXApp
+#elseif os(iOS)
+    import OpenGLES
 #endif
 
-import utils
-
+import AppBase
 
 class App: AppBase {
     
-    var scene:Scene { get { return self.renderObject as! Scene } set(scene) { self.renderObject = scene } }
+    // Scene variable, getter and setter.
+    var scene:Scene { 
+        get { 
+            return self.renderObject as! Scene 
+        } 
+        set(scene) { 
+            self.renderObject = scene    
+        }        
+    }
     
     var lastMousePoint:Point = Point()
     
@@ -28,22 +35,24 @@ class App: AppBase {
     
     override func applicationCreate() {
         
-        // create scene
-        self.scene = Scene()
-        scene.size = Size(640, 480)
-        scene.modelViewMatrix *= (xRotation(pitch) * yRotation(yaw))
-        scene.geometries.append(Cube())
-        
-        // re-draw after init
-        self.needsDisplay()
+        if isGLOn() {
+            // create scene
+            self.scene = Scene()
+            scene.size = Size(640, 480)
+            scene.modelViewMatrix *= (xRotation(pitch) * yRotation(yaw))
+            scene.geometries.append(Cube())
+            
+            // re-draw after init
+            self.needsDisplay()
+        }
     }
     
     override func applicationClose() {
     
     }
     
-    override func windowDidResize(size:Rect) {
-        scene.size = size.size
+    override func windowDidResize(_ size:Size) {
+        scene.size = size
     }
     
     // mouse events
@@ -76,7 +85,7 @@ class App: AppBase {
     override func mouseUp(_ point:Point) {
         
     }
-    
 }
+
 
 
