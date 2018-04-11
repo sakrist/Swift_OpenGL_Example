@@ -26,13 +26,13 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
         super.init()
         self.renderObject = nil
         
-        let window = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480), styleMask: [NSWindowStyleMask.titled, NSWindowStyleMask.closable, NSWindowStyleMask.miniaturizable, NSWindowStyleMask.resizable], backing: .buffered, defer: false)
+        let window = NSWindow(contentRect: NSMakeRect(0, 0, 640, 480), styleMask: [NSWindow.StyleMask.titled, NSWindow.StyleMask.closable, NSWindow.StyleMask.miniaturizable, NSWindow.StyleMask.resizable], backing: .buffered, defer: false)
         window.center()
         window.title = "OpenGL Example Swift"
         self.window = window
         
-        let application = NSApplication.shared()
-        application.setActivationPolicy(NSApplicationActivationPolicy.regular)
+        let application = NSApplication.shared
+        application.setActivationPolicy(NSApplication.ActivationPolicy.regular)
         application.delegate = self
         application.activate(ignoringOtherApps:true)
     }
@@ -46,7 +46,7 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
         let glview = OpenGLView(frame:rect)
         glview.application = self
         glview.createGL()
-        glview.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        glview.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
         self.glView = glview;
         self.window?.contentView?.addSubview(glview)
         
@@ -60,7 +60,7 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
     
     open func windowWillClose(_ notification: Notification) {
         self.applicationClose()
-        NSApplication.shared().terminate(0)
+        NSApplication.shared.terminate(0)
     }
     
     open func windowDidResize(_ notification: Notification) {
@@ -69,7 +69,7 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
     }
     
     open func run() {
-        NSApplication.shared().run()
+        NSApplication.shared.run()
     }
     
     // base functions

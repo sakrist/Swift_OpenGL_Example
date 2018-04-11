@@ -183,7 +183,7 @@ public class Shader {
         glShaderSource(shader, 1, &castSource, nil)
         glCompileShader(shader)
         
-        source.deallocate(capacity: shaderString.count)
+        source.deallocate()
         
 //        #if defined(DEBUG)
         var logLength: GLint = 0

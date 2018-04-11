@@ -85,7 +85,7 @@ class OpenGLView: NSOpenGLView {
         }
         
         // Create new tracking area.
-        let options: NSTrackingAreaOptions = [NSTrackingAreaOptions.mouseMoved, NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeWhenFirstResponder]
+        let options: NSTrackingArea.Options = [NSTrackingArea.Options.mouseMoved, NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeWhenFirstResponder]
         trackingArea = NSTrackingArea(rect: frame, options: options, owner: self, userInfo: nil)
     }
 
@@ -96,7 +96,7 @@ class OpenGLView: NSOpenGLView {
     override func keyDown(with event: NSEvent) {
         // Close the window when the escape key is pressed.
         if event.keyCode == 0x35 {
-            NSApplication.shared().keyWindow?.close()
+            NSApplication.shared.keyWindow?.close()
         }
     }
 

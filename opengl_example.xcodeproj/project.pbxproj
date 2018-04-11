@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21C37C3207DFA790074470D /* Default-568h@2x.png */; };
 		D22B30C71FF82852005D5394 /* AppBase_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* AppBase_ios.swift */; };
 		D22B30C81FF82852005D5394 /* AppBase_linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AppBase_linux.swift */; };
 		D22B30C91FF82852005D5394 /* AppBase_macos.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* AppBase_macos.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D21C37C3207DFA790074470D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D22B30D11FF82852005D5394 /* AppBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22B30DB1FF828D0005D5394 /* iOS_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CC36891FF85071001A083B /* RenderObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderObject.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		OBJ_26 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"opengl_example::AppBase::Product" /* AppBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"opengl_example::app::Product" /* app */ = {isa = PBXFileReference; lastKnownFileType = text; path = app; sourceTree = BUILT_PRODUCTS_DIR; };
+		"opengl_example::app::Product" /* app */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				D21C37C3207DFA790074470D /* Default-568h@2x.png */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_27 /* Tests */,
@@ -294,6 +297,12 @@
 						DevelopmentTeam = DHKZ7WR43P;
 						ProvisioningStyle = Automatic;
 					};
+					"opengl_example::AppBase" = {
+						LastSwiftMigration = 0930;
+					};
+					"opengl_example::app" = {
+						LastSwiftMigration = 0930;
+					};
 				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "opengl_example" */;
@@ -323,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,7 +663,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = app;
 			};
 			name = Debug;
@@ -672,7 +683,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = app;
 			};
 			name = Release;
@@ -694,7 +706,8 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = AppBase;
 			};
 			name = Debug;
@@ -716,7 +729,8 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = AppBase;
 			};
 			name = Release;
