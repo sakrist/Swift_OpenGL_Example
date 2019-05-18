@@ -13,7 +13,7 @@ let package = Package(
 
 
 #if os(Linux)
-package.dependencies.append(.package(url: "https://github.com/sakrist/COpenGL.swift.git", from:"1.0.0"))
-package.dependencies.append(.package(url: "https://github.com/sakrist/CX11.swift.git", from:"1.0.0"))
+package.dependencies.append(.package(url: "https://github.com/sakrist/COpenGL.swift.git", from:"1.0.5"))
+package.dependencies.append(.package(url: "https://github.com/sakrist/CX11.swift.git", from:"1.0.3"))
 #endif
 
