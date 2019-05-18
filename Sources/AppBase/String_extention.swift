@@ -13,7 +13,7 @@ public extension String {
         // check first that the first character of search string exists
         if self.contains(findStr.first!) {
             // if so set this as the place to start searching
-            startInd = self.index(of:findStr.first!)!
+            startInd = self.firstIndex(of:findStr.first!)!
         }
         else {
             // if not return empty array

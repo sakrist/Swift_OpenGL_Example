@@ -298,10 +298,10 @@
 						ProvisioningStyle = Automatic;
 					};
 					"opengl_example::AppBase" = {
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1020;
 					};
 					"opengl_example::app" = {
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -310,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -663,8 +664,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = app;
 			};
 			name = Debug;
@@ -683,8 +683,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = app;
 			};
 			name = Release;
@@ -706,8 +705,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = AppBase;
 			};
 			name = Debug;
@@ -729,8 +727,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = AppBase;
 			};
 			name = Release;
