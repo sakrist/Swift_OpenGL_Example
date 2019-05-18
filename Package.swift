@@ -1,18 +1,19 @@
+// swift-tools-version:5.0
 
 import PackageDescription
 
 let package = Package(
     name: "opengl_example",
+    dependencies: [],
     targets: [
-        Target( name: "AppBase" ),
-        Target( name: "app", dependencies: [ .Target(name: "AppBase") ])
-    ],
-    dependencies: []
+        .target( name: "AppBase" ),
+        .target( name: "app", dependencies: [ "AppBase" ])
+    ]    
 )
 
 
 #if os(Linux)
-package.dependencies.append(.Package(url: "https://github.com/sakrist/COpenGL.swift.git", majorVersion: 1))
-package.dependencies.append(.Package(url: "https://github.com/sakrist/CX11.swift.git", majorVersion: 1))
+package.dependencies.append(.package(url: "https://github.com/sakrist/COpenGL.swift.git", from:"1.0.0"))
+package.dependencies.append(.package(url: "https://github.com/sakrist/CX11.swift.git", from:"1.0.0"))
 #endif
 
