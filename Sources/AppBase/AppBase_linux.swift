@@ -47,7 +47,7 @@ open class AppBase: AppDelegate, MouseEventDelegate {
 
         self.visInfo = glXChooseVisual(display, 0, att)
 
-        att.deallocate(capacity:5)
+        att.deallocate()
 
         if(visInfo == nil) {
             print("No appropriate visual found")
@@ -145,8 +145,8 @@ open class AppBase: AppDelegate, MouseEventDelegate {
 
         self.applicationClose()
 
-        event.deallocate(capacity:1)
-        gwa.deallocate(capacity:1)
+        event.deallocate()
+        gwa.deallocate()
 
         exit(0)
     }
