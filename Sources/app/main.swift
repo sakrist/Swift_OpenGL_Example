@@ -15,13 +15,21 @@
     import Cocoa
 #endif
 
-import AppBase
 
+#if os(Linux) || os(macOS)
+import AppBase
 func main() {    
     let app = App()
     app.run()
     
 }
-
 main()
+
+#elseif os(iOS)
+import UIKit
+UIApplicationMain( CommandLine.argc,
+                   CommandLine.unsafeArgv,
+                   nil,
+                   NSStringFromClass(App.self))
+#endif
 

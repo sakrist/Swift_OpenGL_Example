@@ -18,7 +18,7 @@ open class AppBase: UIResponder, UIApplicationDelegate, AppDelegate, GLKViewDele
     public var glview: GLView?
     public var renderObject: RenderObject?
     
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
@@ -48,7 +48,7 @@ open class AppBase: UIResponder, UIApplicationDelegate, AppDelegate, GLKViewDele
     }
     
     open func run() {
-        UIApplicationMain(0, nil, nil, NSStringFromClass(self.classForCoder))
+        // not required for iOS
     }
     
     // base functions
