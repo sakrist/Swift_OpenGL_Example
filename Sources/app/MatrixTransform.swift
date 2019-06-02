@@ -12,6 +12,9 @@
     import Darwin.C
 #elseif os(iOS)
     import OpenGLES
+#elseif os(Android)
+    import Glibc
+    import GL.ES3
 #endif
 
 import AppBase
@@ -378,9 +381,9 @@ func rotate(_ angleRadians:Float, r:float3) -> float4x4 {
     
     let k:Float = 1.0 - c
     
-    var u:float3 = normalize(r)
-    var v:float3 = s * u
-    var w:float3 = k * u
+    let u:float3 = normalize(r)
+    let v:float3 = s * u
+    let w:float3 = k * u
     
     var P = float4(0.0)
     var Q = float4(0.0)

@@ -15,6 +15,9 @@
 #elseif os(iOS)
     import OpenGLES
     import OpenGLES.ES3
+#elseif os(Android)
+    import Glibc
+    import GL.ES3
 #endif
 
 public func isGLOn() -> Bool {
@@ -122,7 +125,7 @@ public class Shader {
         glBindAttribLocation(self.program, Shader.positionAttribute, "position")
         glBindAttribLocation(self.program, Shader.normalAttribute, "normal")
         
-        #if os(iOS)
+        #if os(iOS) || os(Android)
             glGetFragDataLocation(self.program, "glFragData0");
         #else
             glBindFragDataLocation(self.program, 0, "glFragData0");

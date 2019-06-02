@@ -2,7 +2,7 @@
 
 This project was developed just for proof of concept: Simple application with OpenGL written on swift - can be compiled and run on Ubuntu (Linux), macOS and iOS. And in future on some *X* platform too. 
 
-##### macOS
+#### macOS
 
 Terminal:
 
@@ -16,13 +16,13 @@ or Xcode
 
 Open `opengl_example.xcodeproj` project.
 
-##### iOS
+#### iOS
 
 1. Open `opengl_example.xcodeproj` project.
 2. Select **iOS_example** target and destination
 3. Run
 
-##### Linux (Ubuntu 64-bit)
+#### Linux (Ubuntu 64-bit)
 
 1. [Install](https://swift.org/getting-started/#installing-swift) swift toolchaine.
 

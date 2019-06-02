@@ -4,3 +4,6 @@ build.sh
 OpenGL_example/OpenGL_example.xcodeproj/project.xcworkspace
 opengl_example.xcodeproj/project.xcworkspace/xcuserdata
 opengl_example.xcodeproj/xcuserdata
+Android/.gradle
+Android/app/.externalNativeBuild
+Android/app/build

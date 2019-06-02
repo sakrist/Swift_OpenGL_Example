@@ -12,6 +12,9 @@
     import Darwin.C
 #elseif os(iOS)
     import OpenGLES
+#elseif os(Android)
+    import Glibc
+    import GL.ES3
 #endif
 
 import AppBase
