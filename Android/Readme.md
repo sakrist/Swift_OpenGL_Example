@@ -1,3 +1,10 @@
+About:
+-----
+
+Project is purely based on https://github.com/vgorloff/swift-everywhere-samples
+
+To get toolchain follow instructions https://github.com/vgorloff/swift-everywhere-toolchain
+
 Usage:
 -----
 

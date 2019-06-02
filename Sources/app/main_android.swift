@@ -7,6 +7,9 @@
 //
 
 #if os(Android)
+import Foundation
+import AppBase
+
 var app:App?
 
 @_cdecl("Java_com_home_Swift_1OpenGL_1Example_SwiftApp_applicationCreate")
