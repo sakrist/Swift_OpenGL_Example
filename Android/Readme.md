@@ -3,7 +3,15 @@ About:
 
 Project is purely based on https://github.com/vgorloff/swift-everywhere-samples
 
-To get toolchain follow instructions https://github.com/vgorloff/swift-everywhere-toolchain
+
+
+Required:
+-----
+1. Android SDK
+2. Android NDK
+3. Android Studio
+4. CMake
+5. swift-android-toolchain (https://github.com/vgorloff/swift-everywhere-toolchain)
 
 Usage:
 -----

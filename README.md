@@ -34,6 +34,9 @@ Open `opengl_example.xcodeproj` project.
 6. run `swift build` to build
 7. run `.build/debug/app`
 
+#### Android
+
+1. Read `Readme.md` inside Android folder
 
 ### Screenshots
 
@@ -46,6 +49,9 @@ Open `opengl_example.xcodeproj` project.
 
 - Ubuntu<br>
 <img src=screen2.png width="500">
+
+- Android<br>
+<img src=screen3.png width="500">
 
 
 <br>
