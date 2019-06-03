@@ -39,7 +39,6 @@ set(SASwiftCopyLibs "${SA_SWIFT_TOOLCHAIN_DIR}/bin/copy-libs-${SaNdkPlatform}")
 set(SANativeLibsDir "${CMAKE_CURRENT_SOURCE_DIR}/build/swift/${ANDROID_ABI}")
 set(SaLibOutput "${SANativeLibsDir}/libapp.so")
 set(SaAppBaseOut "${SANativeLibsDir}/libAppBase.so")
-# file(GLOB SASourceFilesInput "${CMAKE_CURRENT_SOURCE_DIR}/../../Sources/app/*.swift")
 
 set(SASourceFilesInput
         "${CMAKE_CURRENT_SOURCE_DIR}/../../Sources/app/App.swift"
@@ -54,7 +53,7 @@ set(SASourceFilesInput
 add_custom_command(
         OUTPUT ${SaAppBaseOut}
         COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/../AppBase/
-        COMMAND make build:${ANDROID_ABI}
+        COMMAND make build:${ANDROID_ABI} toolchain=${SA_SWIFT_TOOLCHAIN_DIR}
         COMMAND file ${SaAppBaseOut}
         COMMENT "Build AppBase"
         VERBATIM
@@ -65,7 +64,7 @@ add_custom_command(
 add_custom_command(
         OUTPUT ${SaLibOutput}
         DEPENDS ${SASourceFilesInput} ${SaAppBaseOut}
-        COMMAND ${SASwiftCompiler} -emit-library -emit-module -j4 -DSWIFT_PACKAGE -swift-version 5 -parse-as-library -L ${SANativeLibsDir} -I "${SANativeLibsDir}" -I ${CMAKE_SYSROOT} -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../GL.swift/module.modulemap" -module-name app -Xlinker -soname -Xlinker libapp.so -o "${SaLibOutput}" ${SASourceFilesInput}
+        COMMAND ${SASwiftCompiler} -emit-library -emit-module -j4 -DSWIFT_PACKAGE -swift-version 5 -parse-as-library -L ${SANativeLibsDir} -I "${SANativeLibsDir}" -I ${CMAKE_SYSROOT} -lAppBase -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../Android.swift/module.modulemap" -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../GL.swift/module.modulemap" -module-name app -Xlinker -soname -Xlinker libapp.so -o "${SaLibOutput}" ${SASourceFilesInput}
         COMMAND file ${SaLibOutput}
         COMMENT "Building Swift Shared library"
         VERBATIM
@@ -107,4 +106,4 @@ file(GLOB SABridgeLibSources "${CMAKE_CURRENT_SOURCE_DIR}/src/main/cpp/*.cpp")
 add_library(SABridge SHARED ${SABridgeLibSources})
 add_dependencies(SABridge SASwiftCompile SASwiftCopy)
 
-target_link_libraries(SABridge swift_app ${SaAppBaseOut})
+target_link_libraries(SABridge swift_app)

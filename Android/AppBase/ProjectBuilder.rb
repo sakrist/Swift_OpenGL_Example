@@ -3,13 +3,18 @@ require 'yaml'
 
 class ProjectBuilder < Tool
 
-   attr_reader :binary
+   attr_reader :component
+#   attr_reader :toolchainDir
    
    def self.usage()
       tool = Tool.new()
 
       tool.print("\n1. Build project:", 32)
       tool.print("   $ make build\n", 36)
+      
+      tool.print(" Example:  $ make build:x86\n", 36)
+      
+      tool.print(" Example:  $ make build:x86 toolchain=~/Library/Android/sdk/swift-android-toolchain\n", 36)
 
       tool.print("\n2. Clean project:", 32)
       tool.print("   $ make clean\n", 36)
@@ -17,24 +22,25 @@ class ProjectBuilder < Tool
    
    def self.perform()
       action = ARGV.first
+      @toolchainDir = ARGV[1]
       if action.nil? then usage()
-      elsif action == "build" then build()
+      elsif action == "build" then buildAll()
       elsif action.start_with?("build:") then build(action.sub("build:", ''))
       elsif action == "clean" then clean()
       else usage()
       end
    end
    
-   def self.build()
-     Builder.new("armeabi-v7a").build()
-     Builder.new("arm64-v8a").build()
-     Builder.new("x86").build()
-     Builder.new("x86_64").build()
+   def self.buildAll()
+     Builder.new("armeabi-v7a", @toolchainDir).build()
+     Builder.new("arm64-v8a", @toolchainDir).build()
+     Builder.new("x86", @toolchainDir).build()
+     Builder.new("x86_64", @toolchainDir).build()
    end
 
-    def self.build(arch)
-        Builder.new(arch).build()
-    end
+   def self.build(arch)
+     Builder.new(arch, @toolchainDir).build()
+   end
    
    def self.clean()
       Builder.new("armeabi-v7a").clean()
@@ -46,20 +52,12 @@ class ProjectBuilder < Tool
    def initialize(component, arch)
       @arch = arch
       @builds = "#{@root}/../app/build/swift/#{arch}"
-      
-      settingsFilePath = "#{@root}/local.properties.yml"
-      if File.exist?(settingsFilePath)
-         @config = YAML.load_file(settingsFilePath)
-      else
-         raise "File \"#{settingsFilePath}\" not exists."
+    
+      if @toolchainDir.nil?
+          print("toolchainDir not found", 31)
+          exit
       end
       
-      toolchainDir = @config['swiftToolchain.dir']
-      if toolchainDir.nil?
-         raise "Setting \"swiftToolchain.dir\" is missed in file \"#{settingsFilePath}\"."
-      end
-      @toolchainDir = File.expand_path(toolchainDir)
-
       @binary = "#{@builds}/#{component}"
       if @arch == "armeabi-v7a"
          @ndkArchPath = "arm-linux-androideabi"

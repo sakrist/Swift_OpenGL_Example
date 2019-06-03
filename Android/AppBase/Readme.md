@@ -1,8 +1,6 @@
 Usage:
 -----
 
-1. Create or Update file `local.properties.yml` with actual paths:
+1. Get swift toolchain https://github.com/vgorloff/swift-everywhere-toolchain
 
-   - swiftToolchain.dir - Path to Swift Toolchain (by default similar to: ../../swift-everywhere-toolchain/ToolChain/swift-android-toolchain)
-
-2. Run command `$ make`.
+2. Run command `$ make build toolchain=~/Library/Android/sdk/swift-android-toolchain`.

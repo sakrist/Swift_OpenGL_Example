@@ -5,8 +5,9 @@ require_relative "ProjectBuilder.rb"
 
 class Builder < ProjectBuilder
 
-   def initialize(arch = Arch.default)
+   def initialize(arch = Arch.default, swiftToolchainDir = "")
       component = "appbase"
+      @toolchainDir = swiftToolchainDir
       @root = File.dirname(__FILE__)
       super(component, arch)
    end
@@ -26,7 +27,10 @@ class Builder < ProjectBuilder
        
       # Lib
       binary = "#{@builds}/lib#{moduleName}.so"
-      execute "cd #{@builds} && #{@swiftc} -swift-version 5 -emit-library -j4 -DSWIFT_PACKAGE -emit-dependencies -emit-module -parse-as-library -module-name #{moduleName} -o #{binary} #{sourcesFiles}"
+      execute "cd #{@builds} && #{@swiftc} -swift-version 5 \
+      -emit-library -j4 -DSWIFT_PACKAGE -emit-dependencies \
+      -emit-module -parse-as-library \
+      -module-name #{moduleName} -o #{binary} #{sourcesFiles}"
       execute "file #{binary}"
 
       

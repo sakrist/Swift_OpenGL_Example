@@ -1,0 +1,10 @@
+module Android [system] {
+
+    module log {
+        header "log.h"
+    }
+
+    link "log"
+
+    export *
+}

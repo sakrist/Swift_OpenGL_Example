@@ -17,6 +17,15 @@ public struct Point {
         self.x = x
         self.y = y
     }
+    
+    public init(_ x:Int, _ y:Int) {
+        self.x = Double(x)
+        self.y = Double(y)
+    }
+    public init(_ x:Int32, _ y:Int32) {
+        self.x = Double(x)
+        self.y = Double(y)
+    }
 }
 
 public struct Size {
@@ -27,6 +36,16 @@ public struct Size {
     public init(_ width:Double, _ height:Double) {
         self.width = width
         self.height = height
+    }
+    
+    public init(_ width:Int, _ height:Int) {
+        self.width = Double(width)
+        self.height = Double(height)
+    }
+    
+    public init(_ width:Int32, _ height:Int32) {
+        self.width = Double(width)
+        self.height = Double(height)
     }
 }
 

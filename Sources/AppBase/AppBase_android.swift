@@ -20,7 +20,11 @@ open class AppBase {
     open func applicationCreate() {}
     open func applicationClose() {}
     
-    open func needsDisplay() { }
+    open func needsDisplay() {
+        if renderObject != nil {
+            renderObject?.render()
+        }
+    }
 
     open func windowDidResize(_ size:Size) {}
     

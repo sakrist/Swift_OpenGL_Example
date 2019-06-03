@@ -7,3 +7,4 @@ opengl_example.xcodeproj/xcuserdata
 Android/.gradle
 Android/app/.externalNativeBuild
 Android/app/build
+Android/.idea
