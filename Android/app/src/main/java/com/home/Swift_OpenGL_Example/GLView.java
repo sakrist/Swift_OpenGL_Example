@@ -38,7 +38,7 @@ class GLView extends GLSurfaceView {
 
     public GLView(Context context) {
         super(context);
-        init(false, 0, 0);
+        init(false, 24, 0);
     }
 
     public GLView(Context context, boolean translucent, int depth, int stencil) {
