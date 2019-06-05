@@ -64,7 +64,12 @@ add_custom_command(
 add_custom_command(
         OUTPUT ${SaLibOutput}
         DEPENDS ${SASourceFilesInput} ${SaAppBaseOut}
-        COMMAND ${SASwiftCompiler} -emit-library -emit-module -j4 -DSWIFT_PACKAGE -swift-version 5 -parse-as-library -L ${SANativeLibsDir} -I "${SANativeLibsDir}" -I ${CMAKE_SYSROOT} -lAppBase -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../Android.swift/module.modulemap" -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../GL.swift/module.modulemap" -module-name app -Xlinker -soname -Xlinker libapp.so -o "${SaLibOutput}" ${SASourceFilesInput}
+        COMMAND ${SASwiftCompiler} -emit-library -emit-module -j4 -DSWIFT_PACKAGE -swift-version 5
+                -parse-as-library -L ${SANativeLibsDir} -I "${SANativeLibsDir}"
+                -I ${CMAKE_SYSROOT} -lAppBase
+                -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../Android.swift/module.modulemap"
+                -Xcc -fmodule-map-file="${CMAKE_CURRENT_SOURCE_DIR}/../GL.swift/module.modulemap"
+                -module-name app -Xlinker -soname -Xlinker libapp.so -o "${SaLibOutput}" ${SASourceFilesInput}
         COMMAND file ${SaLibOutput}
         COMMENT "Building Swift Shared library"
         VERBATIM
