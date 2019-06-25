@@ -1,8 +1,8 @@
 # Swift OpenGL Example
 
-This project was developed just for proof of concept: Simple application with OpenGL written on swift - can be compiled and run on Ubuntu (Linux), macOS, iOS and **Android**. And in future on some *X* platform too. 
+This project was developed just for proof of concept: Simple application using OpenGL and written with swift - can be compiled and run on Ubuntu (Linux), macOS, iOS and **Android**. And in future on some *X* platform too. 
 
-#### macOS
+### macOS
 
 Terminal:
 
@@ -16,13 +16,13 @@ or Xcode
 
 Open `opengl_example.xcodeproj` project.
 
-#### iOS
+### iOS
 
 1. Open `opengl_example.xcodeproj` project.
 2. Select **iOS_example** target and destination
 3. Run
 
-#### Linux (Ubuntu 64-bit)
+### Linux (Ubuntu 64-bit)
 
 1. [Install](https://swift.org/getting-started/#installing-swift) swift toolchaine.
 
@@ -34,7 +34,7 @@ Open `opengl_example.xcodeproj` project.
 6. run `swift build` to build
 7. run `.build/debug/app`
 
-#### Android
+### Android
 
 1. Read `Readme.md` inside Android folder
 
@@ -53,8 +53,4 @@ Open `opengl_example.xcodeproj` project.
 - Android<br>
 <img src=screen3.png width="500">
 
-
-<br>
-
-#### Note: It's just an example. 
 
