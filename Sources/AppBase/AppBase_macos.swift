@@ -22,6 +22,33 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
         }
     }
     
+    func makeMainMenu() -> NSMenu {
+        let mainMenu            = NSMenu() // `title` really doesn't matter.
+        let mainAppMenuItem     = NSMenuItem(title: "Application", action: nil, keyEquivalent: "") // `title` really doesn't matter.
+        mainMenu.addItem(mainAppMenuItem)
+
+        let appMenu             = NSMenu() // `title` really doesn't matter.
+        mainAppMenuItem.submenu = appMenu
+
+        let appServicesMenu     = NSMenu()
+        NSApp.servicesMenu      = appServicesMenu
+
+        appMenu.addItem(NSMenuItem.separator())
+        appMenu.addItem(withTitle: "Hide Me", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        appMenu.addItem({ () -> NSMenuItem in
+            let m = NSMenuItem(title: "Hide Others", action: #selector(NSApplication.hideOtherApplications(_:)), keyEquivalent: "h")
+            m.keyEquivalentModifierMask = [.command, .option]
+            return m
+            }())
+        appMenu.addItem(withTitle: "Show All", action: #selector(NSApplication.unhideAllApplications(_:)), keyEquivalent: "")
+
+        appMenu.addItem(NSMenuItem.separator())
+        appMenu.addItem(withTitle: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+
+    
+        return mainMenu
+    }
+    
     public override init() {
         super.init()
         self.renderObject = nil
@@ -35,6 +62,7 @@ open class AppBase: NSObject, NSApplicationDelegate, NSWindowDelegate, AppDelega
         application.setActivationPolicy(NSApplication.ActivationPolicy.regular)
         application.delegate = self
         application.activate(ignoringOtherApps:true)
+        NSApplication.shared.mainMenu = makeMainMenu()
     }
     
     open func applicationDidFinishLaunching(_ aNotification: Notification) {
