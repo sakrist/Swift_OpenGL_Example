@@ -8,3 +8,4 @@ Android/.gradle
 Android/app/.externalNativeBuild
 Android/app/build
 Android/.idea
+Android/app/.cxx
