@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35BCE6C6229D6F9F0097A61A /* AppBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22B30D11FF82852005D5394 /* AppBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35BCE6C7229D70D30097A61A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
 		D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21C37C3207DFA790074470D /* Default-568h@2x.png */; };
 		D266351D1FF82A6F00E5BDAF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
@@ -16,8 +15,10 @@
 		D26635201FF82A6F00E5BDAF /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* MatrixTransform.swift */; };
 		D26635211FF82A6F00E5BDAF /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Scene.swift */; };
 		D26635221FF82A6F00E5BDAF /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
-		D26635281FF82A9100E5BDAF /* AppBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22B30D11FF82852005D5394 /* AppBase.framework */; };
-		OBJ_37 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		D2DF329325BC5401002AA42F /* GLAppBase in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329225BC5401002AA42F /* GLAppBase */; };
+		D2DF329525BC5404002AA42F /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329425BC5404002AA42F /* SwiftMath */; };
+		D2DF329925BC5413002AA42F /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329825BC5413002AA42F /* SwiftMath */; };
+		D2DF329B25BC5415002AA42F /* GLAppBase in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329A25BC5415002AA42F /* GLAppBase */; };
 		OBJ_43 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		OBJ_44 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
 		OBJ_45 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Geometry.swift */; };
@@ -25,25 +26,7 @@
 		OBJ_47 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Scene.swift */; };
 		OBJ_48 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
 		OBJ_49 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
-		OBJ_51 /* AppBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "opengl_example::AppBase::Product" /* AppBase.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D22B30B41FF82535005D5394 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "opengl_example::AppBase";
-			remoteInfo = AppBase;
-		};
-		D26635251FF82A8900E5BDAF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D22B30C31FF82852005D5394;
-			remoteInfo = "AppBase iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		35BCE6C5229D6F950097A61A /* CopyFiles */ = {
@@ -52,7 +35,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				35BCE6C6229D6F9F0097A61A /* AppBase.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		D21C37C3207DFA790074470D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D22B30D11FF82852005D5394 /* AppBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22B30DB1FF828D0005D5394 /* iOS_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DF327625BC43E5002AA42F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_20 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -71,23 +52,16 @@
 		OBJ_25 /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		OBJ_26 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		"opengl_example::AppBase::Product" /* AppBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"opengl_example::app::Product" /* app */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D22B30CC1FF82852005D5394 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D22B30D81FF828D0005D5394 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D26635281FF82A9100E5BDAF /* AppBase.framework in Frameworks */,
+				D2DF329B25BC5415002AA42F /* GLAppBase in Frameworks */,
+				D2DF329925BC5413002AA42F /* SwiftMath in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,14 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_51 /* AppBase.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_66 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
+				D2DF329525BC5404002AA42F /* SwiftMath in Frameworks */,
+				D2DF329325BC5401002AA42F /* GLAppBase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				"opengl_example::app::Product" /* app */,
-				"opengl_example::AppBase::Product" /* AppBase.framework */,
-				D22B30D11FF82852005D5394 /* AppBase.framework */,
 				D22B30DB1FF828D0005D5394 /* iOS_example.app */,
 			);
 			name = Products;
@@ -173,22 +139,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D22B30C31FF82852005D5394 /* AppBase iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D22B30CE1FF82852005D5394 /* Build configuration list for PBXNativeTarget "AppBase iOS" */;
-			buildPhases = (
-				D22B30C61FF82852005D5394 /* Sources */,
-				D22B30CC1FF82852005D5394 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "AppBase iOS";
-			productName = AppBase;
-			productReference = D22B30D11FF82852005D5394 /* AppBase.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		D22B30DA1FF828D0005D5394 /* iOS_example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22B30EA1FF828D1005D5394 /* Build configuration list for PBXNativeTarget "iOS_example" */;
@@ -201,42 +151,15 @@
 			buildRules = (
 			);
 			dependencies = (
-				D26635261FF82A8900E5BDAF /* PBXTargetDependency */,
 			);
 			name = iOS_example;
+			packageProductDependencies = (
+				D2DF329825BC5413002AA42F /* SwiftMath */,
+				D2DF329A25BC5415002AA42F /* GLAppBase */,
+			);
 			productName = iOS_example;
 			productReference = D22B30DB1FF828D0005D5394 /* iOS_example.app */;
 			productType = "com.apple.product-type.application";
-		};
-		"opengl_example::AppBase" /* AppBase */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_57 /* Build configuration list for PBXNativeTarget "AppBase" */;
-			buildPhases = (
-				OBJ_60 /* Sources */,
-				OBJ_66 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AppBase;
-			productName = AppBase;
-			productReference = "opengl_example::AppBase::Product" /* AppBase.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"opengl_example::SwiftPMPackageDescription" /* opengl_examplePackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_33 /* Build configuration list for PBXNativeTarget "opengl_examplePackageDescription" */;
-			buildPhases = (
-				OBJ_36 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = opengl_examplePackageDescription;
-			productName = opengl_examplePackageDescription;
-			productType = "com.apple.product-type.framework";
 		};
 		"opengl_example::app" /* app */ = {
 			isa = PBXNativeTarget;
@@ -248,9 +171,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_53 /* PBXTargetDependency */,
 			);
 			name = app;
+			packageProductDependencies = (
+				D2DF329225BC5401002AA42F /* GLAppBase */,
+				D2DF329425BC5404002AA42F /* SwiftMath */,
+			);
 			productName = app;
 			productReference = "opengl_example::app::Product" /* app */;
 			productType = "com.apple.product-type.tool";
@@ -270,9 +196,6 @@
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
-					"opengl_example::AppBase" = {
-						LastSwiftMigration = 1020;
-					};
 					"opengl_example::app" = {
 						LastSwiftMigration = 1020;
 					};
@@ -288,14 +211,15 @@
 				Base,
 			);
 			mainGroup = OBJ_5;
+			packageReferences = (
+				D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */,
+				D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */,
+			);
 			productRefGroup = OBJ_28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"opengl_example::SwiftPMPackageDescription" /* opengl_examplePackageDescription */,
 				"opengl_example::app" /* app */,
-				"opengl_example::AppBase" /* AppBase */,
-				D22B30C31FF82852005D5394 /* AppBase iOS */,
 				D22B30DA1FF828D0005D5394 /* iOS_example */,
 			);
 		};
@@ -313,13 +237,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D22B30C61FF82852005D5394 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D22B30D71FF828D0005D5394 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,14 +248,6 @@
 				D266351D1FF82A6F00E5BDAF /* App.swift in Sources */,
 				D266351E1FF82A6F00E5BDAF /* Cube.swift in Sources */,
 				D26635201FF82A6F00E5BDAF /* MatrixTransform.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_36 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_37 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,79 +265,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_60 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D26635261FF82A8900E5BDAF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D22B30C31FF82852005D5394 /* AppBase iOS */;
-			targetProxy = D26635251FF82A8900E5BDAF /* PBXContainerItemProxy */;
-		};
-		OBJ_53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "opengl_example::AppBase" /* AppBase */;
-			targetProxy = D22B30B41FF82535005D5394 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		D22B30CF1FF82852005D5394 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = opengl_example.xcodeproj/AppBase_Info_ios.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AppBase;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_NAME = AppBase;
-			};
-			name = Debug;
-		};
-		D22B30D01FF82852005D5394 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = opengl_example.xcodeproj/AppBase_Info_ios.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AppBase;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_NAME = AppBase;
-			};
-			name = Release;
-		};
 		D22B30EB1FF828D1005D5394 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -478,7 +317,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = opengl_example.xcodeproj/Info_ios.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakrist.iOS-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,7 +376,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = opengl_example.xcodeproj/Info_ios.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakrist.iOS-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -567,24 +412,6 @@
 			};
 			name = Debug;
 		};
-		OBJ_34 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 3 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		OBJ_35 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 3 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -600,7 +427,8 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -614,7 +442,10 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = opengl_example.xcodeproj/app_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+					"@executable_path",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
@@ -633,7 +464,10 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = opengl_example.xcodeproj/app_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+					"@executable_path",
+				);
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
@@ -643,62 +477,9 @@
 			};
 			name = Release;
 		};
-		OBJ_58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = opengl_example.xcodeproj/AppBase_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AppBase;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = AppBase;
-			};
-			name = Debug;
-		};
-		OBJ_59 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = opengl_example.xcodeproj/AppBase_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = AppBase;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = AppBase;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D22B30CE1FF82852005D5394 /* Build configuration list for PBXNativeTarget "AppBase iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D22B30CF1FF82852005D5394 /* Debug */,
-				D22B30D01FF82852005D5394 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		D22B30EA1FF828D1005D5394 /* Build configuration list for PBXNativeTarget "iOS_example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -717,15 +498,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_33 /* Build configuration list for PBXNativeTarget "opengl_examplePackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_34 /* Debug */,
-				OBJ_35 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		OBJ_39 /* Build configuration list for PBXNativeTarget "app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -735,16 +507,49 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_57 /* Build configuration list for PBXNativeTarget "AppBase" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_58 /* Debug */,
-				OBJ_59 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/GLAppBase";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+		D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftGFX/SwiftMath";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2DF329225BC5401002AA42F /* GLAppBase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
+			productName = GLAppBase;
+		};
+		D2DF329425BC5404002AA42F /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D2DF329825BC5413002AA42F /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D2DF329A25BC5415002AA42F /* GLAppBase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
+			productName = GLAppBase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }
