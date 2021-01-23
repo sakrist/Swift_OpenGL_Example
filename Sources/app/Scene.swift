@@ -20,7 +20,8 @@
     import GL.ES3
 #endif
 
-import AppBase
+import GLAppBase
+import SwiftMath
 
 
 public class Scene: RenderObject {

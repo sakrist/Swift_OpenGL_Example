@@ -28,7 +28,7 @@ class Cube: Geometry {
 }
 
 
-var gCubeVertexData: [GLfloat] = [
+var gCubeVertexData: [Float32] = [
     // Data layout for each line below is:
     // positionX, positionY, positionZ,     normalX, normalY, normalZ,
     0.5, -0.5, -0.5,        1.0, 0.0, 0.0,

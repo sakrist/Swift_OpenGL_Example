@@ -3,11 +3,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "opengl_example",
-    dependencies: [],
+    name: "OpenglExample",
+    dependencies: [
+        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.2.2"),
+        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.1")
+    ],
     targets: [
-        .target( name: "AppBase" ),
-        .target( name: "app", dependencies: [ "AppBase" ])
+        .target( name: "app", dependencies: [ "SwiftMath", "GLAppBase" ])
     ]    
 )
 

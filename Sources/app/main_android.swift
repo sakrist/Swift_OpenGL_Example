@@ -8,7 +8,7 @@
 
 #if os(Android)
 import Foundation
-import AppBase
+import GLAppBase
 import Android.log
 
 var app:App?

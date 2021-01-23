@@ -33,7 +33,7 @@ class Geometry {
     var dataCount:Int32 = 0
     var indicesCount:Int32 = 0
     
-    init(data:[GLfloat]) {
+    init(data:[Float32]) {
     
         dataCount = Int32(data.count)
         indicesCount = dataCount/6
@@ -43,7 +43,7 @@ class Geometry {
         
         glGenBuffers(1, &vertexBuffer)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(MemoryLayout<GLfloat>.size * Int(dataCount)), data, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(MemoryLayout<Float32>.size * Int(dataCount)), data, GLenum(GL_STATIC_DRAW))
 
         glEnableVertexAttribArray(Shader.positionAttribute)
         glVertexAttribPointer(Shader.positionAttribute, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), 24, BUFFER_OFFSET(0))

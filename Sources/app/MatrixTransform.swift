@@ -17,7 +17,7 @@
     import GL.ES3
 #endif
 
-import AppBase
+import GLAppBase
 
 public let PI = 3.14159265358979323846264338327950288
 
@@ -408,16 +408,14 @@ func rotate(_ angleRadians:Float, r:float3) -> float4x4 {
 }
 
 // rotate
-func rotate(_ angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4
-{
+func rotate(_ angleRadians:Float, x:Float, y:Float, z:Float) -> float4x4 {
     let r = float3(x, y, z)
     return rotate(angleRadians, r:r)
 }
 
 
 // Construct a float 3x3 matrix from a 4x4 matrix
-func float4x4to3x3( transpose:Bool, _ m:float4x4) -> float3x3
-{
+func float4x4to3x3( transpose:Bool, _ m:float4x4) -> float3x3 {
     let P:float3 = m[0].xyz
     let Q:float3 = m[1].xyz
     let R:float3 = m[2].xyz
@@ -433,8 +431,7 @@ func float4x4to3x3( transpose:Bool, _ m:float4x4) -> float3x3
 }
 
 
-func transpose(_ matrix:float3x3) -> float3x3
-{
+func transpose(_ matrix:float3x3) -> float3x3 {
     var result:float3x3 = matrix
     result[0].y = matrix[1].x
     result[0].z = matrix[2].x
@@ -445,8 +442,7 @@ func transpose(_ matrix:float3x3) -> float3x3
     return result
 }
 
-func scale(_ matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3
-{
+func scale(_ matrix:float3x3, sx:Float, sy:Float, sz:Float) -> float3x3 {
     let m = float3x3( (float3(matrix[0].x * sx, matrix[0].y * sx, matrix[0].z * sx),
         float3(matrix[1].x * sy, matrix[1].y * sy, matrix[1].z * sy),
         float3(matrix[2].x * sz, matrix[2].y * sz, matrix[2].z * sz ) ) )
@@ -468,75 +464,6 @@ func invert(_ matrix:float3x3, isInvertible: inout Bool) -> float3x3 {
     }
     
     return scale(transpose(matrix), sx:determinant, sy:determinant, sz:determinant)
-}
-
-// Source of trackball
-// http://fossies.org/linux/privat/gfsview-snapshot-121130.tar.gz:a/gfsview-snapshot-121130/gl/trackball.c
-
-
-func tb_project_to_sphere(_ r:Float, _ x:Float, _ y:Float) -> Float
-{
-    var d:Float, t:Float, z:Float
-    
-    d = sqrtf(x*x + y*y)
-    if d < (r * 0.70710678118654752440) {    /* Inside sphere */
-        z = sqrtf(r*r - d*d)
-    } else {           /* On hyperbola */
-        t = r / 1.41421356237309504880
-        z = t*t / d
-    }
-    return z
-}
-
-func trackball(_ start:Point, end:Point, trackSize:Float) -> quat
-{
-    var quat_result:quat
-    
-    var a:float3 /* Axis of rotation */
-    var phi:Float  /* how much to rotate about axis */
-    var p1:float3, p2:float3, d:float3
-    var t:Float
-    
-    if start.x == end.x && start.y == end.y {
-        quat_result = quat(0, 0, 0, 1.0)
-        return quat_result
-    }
-    
-    /*
-    * First, figure out z-coordinates for projection of P1 and P2 to
-    * deformed sphere
-    */
-    p1 = float3(Float(start.x), Float(start.y), tb_project_to_sphere(trackSize, Float(start.x), Float(start.y)))
-    p2 = float3(Float(end.x), Float(end.y), tb_project_to_sphere(trackSize, Float(end.x), Float(end.y)))
-    
-    /*
-    *  Now, we want the cross product of P1 and P2
-    */
-    a = p2.cross(p1)
-    
-    /*
-    *  Figure out how much to rotate around that axis.
-    */
-    d = p1 - p2
-    t = d.length() / (2.0*trackSize)
-    
-    /*
-    * Avoid problems with out-of-control values...
-    */
-    if t > 1.0 {
-        t = 1.0
-    }
-    if t < -1.0 {
-        t = -1.0
-    }
-    phi = 2.0 * asinf(t)
-    
-    
-    a = a.normalize()
-    a = a.scale(sinf(phi/2.0))
-    quat_result = quat(a, cosf(phi/2.0))
-    
-    return quat_result
 }
 
 

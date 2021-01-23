@@ -10,9 +10,6 @@
 		35BCE6C6229D6F9F0097A61A /* AppBase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D22B30D11FF82852005D5394 /* AppBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35BCE6C7229D70D30097A61A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
 		D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21C37C3207DFA790074470D /* Default-568h@2x.png */; };
-		D22B30C71FF82852005D5394 /* AppBase_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* AppBase_ios.swift */; };
-		D22B30C81FF82852005D5394 /* AppBase_linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AppBase_linux.swift */; };
-		D22B30C91FF82852005D5394 /* AppBase_macos.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* AppBase_macos.swift */; };
 		D266351D1FF82A6F00E5BDAF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		D266351E1FF82A6F00E5BDAF /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
 		D266351F1FF82A6F00E5BDAF /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Geometry.swift */; };
@@ -20,18 +17,6 @@
 		D26635211FF82A6F00E5BDAF /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Scene.swift */; };
 		D26635221FF82A6F00E5BDAF /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
 		D26635281FF82A9100E5BDAF /* AppBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22B30D11FF82852005D5394 /* AppBase.framework */; };
-		D266352C1FF8346B00E5BDAF /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* GLView.swift */; };
-		D266352E1FF8349500E5BDAF /* GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* GLView.swift */; };
-		D2CC368D1FF85071001A083B /* RenderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC36891FF85071001A083B /* RenderObject.swift */; };
-		D2CC368E1FF85071001A083B /* RenderObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC36891FF85071001A083B /* RenderObject.swift */; };
-		D2CC368F1FF85071001A083B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368A1FF85071001A083B /* Types.swift */; };
-		D2CC36901FF85071001A083B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368A1FF85071001A083B /* Types.swift */; };
-		D2CC36911FF85071001A083B /* String_extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368B1FF85071001A083B /* String_extention.swift */; };
-		D2CC36921FF85071001A083B /* String_extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368B1FF85071001A083B /* String_extention.swift */; };
-		D2CC36931FF85071001A083B /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368C1FF85071001A083B /* OpenGLView.swift */; };
-		D2CC36941FF85071001A083B /* OpenGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC368C1FF85071001A083B /* OpenGLView.swift */; };
-		D2CC36961FF85150001A083B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC36951FF85150001A083B /* AppDelegate.swift */; };
-		D2CC36971FF85150001A083B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CC36951FF85150001A083B /* AppDelegate.swift */; };
 		OBJ_37 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_43 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		OBJ_44 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
@@ -41,9 +26,6 @@
 		OBJ_48 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
 		OBJ_49 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
 		OBJ_51 /* AppBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "opengl_example::AppBase::Product" /* AppBase.framework */; };
-		OBJ_61 /* AppBase_ios.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* AppBase_ios.swift */; };
-		OBJ_62 /* AppBase_linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* AppBase_linux.swift */; };
-		OBJ_63 /* AppBase_macos.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* AppBase_macos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,15 +62,7 @@
 		D21C37C3207DFA790074470D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D22B30D11FF82852005D5394 /* AppBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22B30DB1FF828D0005D5394 /* iOS_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2CC36891FF85071001A083B /* RenderObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderObject.swift; sourceTree = "<group>"; };
-		D2CC368A1FF85071001A083B /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
-		D2CC368B1FF85071001A083B /* String_extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_extention.swift; sourceTree = "<group>"; };
-		D2CC368C1FF85071001A083B /* OpenGLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLView.swift; sourceTree = "<group>"; };
-		D2CC36951FF85150001A083B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		OBJ_14 /* AppBase_ios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBase_ios.swift; sourceTree = "<group>"; };
-		OBJ_15 /* AppBase_linux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBase_linux.swift; sourceTree = "<group>"; };
-		OBJ_16 /* AppBase_macos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBase_macos.swift; sourceTree = "<group>"; };
-		OBJ_17 /* GLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLView.swift; sourceTree = "<group>"; };
+		D2DF327625BC43E5002AA42F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_20 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		OBJ_22 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -142,23 +116,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		OBJ_13 /* AppBase */ = {
-			isa = PBXGroup;
-			children = (
-				D2CC36951FF85150001A083B /* AppDelegate.swift */,
-				OBJ_14 /* AppBase_ios.swift */,
-				OBJ_15 /* AppBase_linux.swift */,
-				OBJ_16 /* AppBase_macos.swift */,
-				OBJ_17 /* GLView.swift */,
-				D2CC368C1FF85071001A083B /* OpenGLView.swift */,
-				D2CC36891FF85071001A083B /* RenderObject.swift */,
-				D2CC368B1FF85071001A083B /* String_extention.swift */,
-				D2CC368A1FF85071001A083B /* Types.swift */,
-			);
-			name = AppBase;
-			path = Sources/AppBase;
-			sourceTree = SOURCE_ROOT;
-		};
 		OBJ_19 /* app */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				D21C37C3207DFA790074470D /* Default-568h@2x.png */,
+				D2DF327625BC43E5002AA42F /* README.md */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_27 /* Tests */,
@@ -208,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_19 /* app */,
-				OBJ_13 /* AppBase */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -360,15 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				D22B30C71FF82852005D5394 /* AppBase_ios.swift in Sources */,
-				D22B30C81FF82852005D5394 /* AppBase_linux.swift in Sources */,
-				D2CC368E1FF85071001A083B /* RenderObject.swift in Sources */,
-				D2CC36971FF85150001A083B /* AppDelegate.swift in Sources */,
-				D2CC36901FF85071001A083B /* Types.swift in Sources */,
-				D2CC36941FF85071001A083B /* OpenGLView.swift in Sources */,
-				D22B30C91FF82852005D5394 /* AppBase_macos.swift in Sources */,
-				D2CC36921FF85071001A083B /* String_extention.swift in Sources */,
-				D266352C1FF8346B00E5BDAF /* GLView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,15 +360,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_61 /* AppBase_ios.swift in Sources */,
-				OBJ_62 /* AppBase_linux.swift in Sources */,
-				D2CC368D1FF85071001A083B /* RenderObject.swift in Sources */,
-				D2CC36961FF85150001A083B /* AppDelegate.swift in Sources */,
-				D2CC368F1FF85071001A083B /* Types.swift in Sources */,
-				D2CC36931FF85071001A083B /* OpenGLView.swift in Sources */,
-				OBJ_63 /* AppBase_macos.swift in Sources */,
-				D2CC36911FF85071001A083B /* String_extention.swift in Sources */,
-				D266352E1FF8349500E5BDAF /* GLView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,9 +17,10 @@
     import GL.ES3
 #endif
 
-import AppBase
+import SwiftMath
+import GLAppBase
 
-class App: AppBase {
+class App: GLAppBase {
     
     // Scene variable, getter and setter.
     var scene:Scene { 
@@ -65,12 +66,7 @@ class App: AppBase {
     
     override func mouseMove(_ point:Point) {
 
-        // trackball rotation, does not work really well
-//        let trackBallSize:Float = Float((scene.size.width + scene.size.height)/2)
-//        let q:quat = trackball(start:lastMousePoint, end:point, trackSize: trackBallSize)
-//        let trackballRotation = rotationMatrix(q)
-//        scene.modelViewMatrix *= trackballRotation
-
+ 
         
         let x = Float( (point.x - lastMousePoint.x) * scene.size.height/scene.size.width*0.5 )
         let y = Float( (point.y - lastMousePoint.y) * -(scene.size.width/scene.size.height*0.5) )
