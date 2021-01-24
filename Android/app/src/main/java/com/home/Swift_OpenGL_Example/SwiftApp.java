@@ -3,8 +3,7 @@ package com.home.Swift_OpenGL_Example;
 public class SwiftApp {
 
     static {
-        System.loadLibrary("app");
-        System.loadLibrary("AppBase");
+        System.loadLibrary("OpenGLExampleApp");
     }
 
     public native int applicationCreate();

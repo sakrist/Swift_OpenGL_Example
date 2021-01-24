@@ -1,13 +1,19 @@
+import java.nio.file.Paths
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.4.21'
+    ext.protobufVersion = '0.8.14'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
-        
+        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath "com.google.protobuf:protobuf-gradle-plugin:$protobufVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,5 +27,13 @@ allprojects {
 }
 
 task clean(type: Delete) {
+    // See:
+    // - Logging: https://docs.gradle.org/current/userguide/logging.html
+
+    //logger.lifecycle(String.format("- Deleting %s", rootProject.buildDir.toString()))
     delete rootProject.buildDir
+
+    File filePath = new File(Paths.get(rootDir.toString(), "app/src/main/jniLibs").toString())
+    //logger.lifecycle(String.format("- Deleting %s", filePath.toString()))
+    delete filePath
 }

@@ -1,9 +1,4 @@
-//
-//  gl.h
-//  
-//
-//  Created by Volodymyr Boichentsov on 02/06/2019.
-//
+
 
 #ifndef gl2_h
 #define gl2_h

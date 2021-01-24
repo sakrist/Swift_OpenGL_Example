@@ -7,3 +7,4 @@ build.sh
 **.cxx
 **/xcuserdata**
 **/xcuserdata**
+Android/app/src/main/jniLibs

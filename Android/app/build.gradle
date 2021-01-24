@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.protobuf'
 
 android {
+    ndkVersion "21.3.6528147"
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.home.Swift_OpenGL_Example"
@@ -12,19 +12,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        externalNativeBuild {
-            cmake {
-                arguments "-DANDROID_TOOLCHAIN=clang", '-DANDROID_ARM_NEON=TRUE',
-                        "-DSA_SWIFT_TOOLCHAIN_DIR=${properties.getProperty('swiftToolchain.dir')}"
-                cppFlags "-frtti -fexceptions"
-                cFlags '-O3', '-fsigned-char'
-            }
-        }
-
+        /*
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
+        */
     }
     buildTypes {
         release {
@@ -32,29 +24,107 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     sourceSets {
-        main {
-            jniLibs.srcDirs 'build/swift'
+        // See:
+        // - Gradle swap jniLibs resources based on build flavor - Stack Overflow: https://stackoverflow.com/questions/31687547/gradle-swap-jnilibs-resources-based-on-build-flavor
+        // Disabled as sources copied to `app/src/main/jniLibs` on build.
+        // main {
+        //     jniLibs.srcDirs 'build/swift'
+        // }
+    }
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn spm
+    }
+    // See: Android NDK. Decrease size of APK - Stack Overflow: https://stackoverflow.com/questions/21644150/android-ndk-decrease-size-of-apk
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            universalApk false
         }
     }
-
-    // Encapsulates your external native build configurations.
-    externalNativeBuild {
-
-        // Encapsulates your CMake build configurations.
-        cmake {
-            // Provides a relative path to your CMake build script.
-            path file("CMakeLists.txt")
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.google.protobuf:protobuf-javalite:3.8.0'
+
+    //protobuf(files("$rootDir/../Models"))
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
 }
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.8.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+// https://stackoverflow.com/a/36730534/1418981
+// https://stackoverflow.com/q/50448281/1418981
+def getDeviceAbi() {
+    return "adb shell getprop ro.product.cpu.abi".execute().text.trim()
+}
+
+// See: https://docs.gradle.org/current/dsl/org.gradle.api.tasks.Exec.html
+task spm() {
+    doLast {
+        exec {
+            workingDir "$rootDir"
+            commandLine '/usr/bin/env', "../Builder.sh", "-target", "armv7-none-linux-androideabi"
+        }
+        exec {
+            workingDir "$rootDir"
+            commandLine '/usr/bin/env', "../Builder.sh", "-target", "aarch64-unknown-linux-android"
+        }
+        exec {
+            workingDir "$rootDir"
+            commandLine '/usr/bin/env', "../Builder.sh", "-target", "i686-unknown-linux-android"
+        }
+        exec {
+            workingDir "$rootDir"
+            commandLine '/usr/bin/env', "../Builder.sh", "-target", "x86_64-unknown-linux-android"
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+/*
+afterEvaluate {
+    if (project.hasProperty("assembleRelease")) {
+        assembleRelease.dependsOn spm
+    }
+    if (project.hasProperty("assembleDebug")) {
+        assembleDebug.dependsOn spm
+    }
+}
+*/
+
+/*
+See: Configure Gradle to execute custom build step before starting compilation - Stack Overflow: https://stackoverflow.com/questions/27672553/configure-gradle-to-execute-custom-build-step-before-starting-compilation
+gradle.projectsEvaluated {
+    preBuild.dependsOn(spm)
+}
+*/

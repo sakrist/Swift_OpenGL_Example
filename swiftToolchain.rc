@@ -1,0 +1,3 @@
+# Replace example path below with path to Swift for Android Toolchain.
+# Make sure that you don't have spaces around "=" sign.
+export SaSwiftToolchainDirPath=/Users/sakrist/Documents/projects/swift-android-toolchain

@@ -9,13 +9,15 @@
 #if os(Android)
 import Foundation
 import GLAppBase
-import Android.log
+import SwiftMath
+
+import ndk.log
 
 var app:App?
 
 func os_log(_ string:String) {
     let cstr = string.cString(using: String.Encoding.utf8)
-    print_log(cstr)
+    __android_log_print_1(cstr)
 }
 
 @_cdecl("Java_com_home_Swift_1OpenGL_1Example_SwiftApp_applicationCreate")
