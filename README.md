@@ -36,7 +36,7 @@ Open `opengl_example.xcodeproj` project.
 
 ### Android
 
-1. Read `Readme.md` inside Android folder
+1. Read [Readme](Android/Readme.md) inside Android folder
 
 ### Screenshots
 
@@ -45,7 +45,6 @@ Open `opengl_example.xcodeproj` project.
 
 - iOS<br>
 <img src=Default-568h@2x.png width="500">
-
 
 - Ubuntu<br>
 <img src=screen2.png width="500">

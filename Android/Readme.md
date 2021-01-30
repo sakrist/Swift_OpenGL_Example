@@ -1,33 +1,23 @@
-About:
------
+# swift-everywhere-samples
 
-Project is purely based on https://github.com/vgorloff/swift-everywhere-samples
+## Requirements
 
+- macOS 11.x
+- Xcode 12.x
+- Android Studio 4.1
+- Android NDK 21.3.6528147
 
+## Usage
 
-Required:
------
-1. Android SDK
-2. Android NDK
-3. Android Studio
-4. CMake
-5. swift-android-toolchain (https://github.com/vgorloff/swift-everywhere-toolchain)
+1. Make sure that you have [Swift Android Toolchain](https://github.com/vgorloff/swift-everywhere-toolchain). You can either build it or download [pre-build](https://github.com/vgorloff/swift-everywhere-toolchain/releases) version.
 
-Usage:
------
+2. Make sure that you have a symlink to NDK directory at `/usr/local/ndk/21.3.6528147`. It should be the **same** as already defined in `android.ndkVersion` in Gradle build configuration file (See: `Android/app/build.gradle`).
 
-1. Update file `local.properties` with actual paths:
+   ```sh
+   sudo mkdir -p /usr/local/ndk
+   sudo ln -vsi ~/Library/Android/sdk/ndk/21.3.6528147 /usr/local/ndk/21.3.6528147
+   ```
 
-   - sdk.dir - Path to Android SDK (by default similar to: /Users/user/Library/Android/sdk)
-   - ndk.dir - Path to Android NDK (by default similar to: /Users/user/Library/Android/sdk/ndk-bundle)
-   - swiftToolchain.dir - Path to Swift Toolchain (by default similar to: /Users/user/Git/swift-everywhere-toolchain/ToolChain/swift-android-toolchain)
+3. Open folder `Android` in Android Studio and run it on Device or Android Simulator.
 
-2. Open project in Android Studio and run on Device or Simulator.
-
-Links:
------
-
-- https://developer.android.com/studio/projects/configure-cmake.html
-- Android NDK: Using C/C++ Native Libraries to Write Android Apps: http://bit.ly/2HjXYJk
-- Modern Android NDK Tutorial – Jordan Réjaud – Medium: http://bit.ly/2HvrmLO
-- Android NDK: Using C/C++ Native Libraries to Write Android Apps: http://bit.ly/2HjXYJk
+4. Edit path to `sdk.dir` in `local.properties`
