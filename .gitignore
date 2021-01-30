@@ -4,7 +4,9 @@ build.sh
 **.externalNativeBuild
 **/build
 **.idea
+**.swiftpm
 **.cxx
 **/xcuserdata**
 **/xcuserdata**
+Package.resolved
 Android/app/src/main/jniLibs
