@@ -5,8 +5,8 @@ import PackageDescription
 let package = Package(
     name: "OpenGLExampleApp",
     dependencies: [
-        .package(url: "https://github.com/sakrist/SwiftMath", from: "3.2.3"),
-        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.2")
+        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
+        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.3")
     ],
     targets: [
         .target( name: "app", dependencies: [ "SwiftMath", "GLAppBase" ]),
