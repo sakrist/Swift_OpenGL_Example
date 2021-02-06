@@ -5,15 +5,19 @@ import PackageDescription
 let package = Package(
     name: "OpenGLExampleApp",
     dependencies: [
+//        .package(path: "../SwiftMath"),
         .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
-        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.3")
+//        .package(path: "../GLAppBase")
+//        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.3")
+        .package(url: "https://github.com/sakrist/GLAppBase", .branch("feature/build-with-spm"))
     ],
     targets: [
-        .target( name: "app", dependencies: [ "SwiftMath", "GLAppBase" ]),
+        .target(name: "app", 
+                dependencies: [ "SwiftMath", "GLAppBase" ], 
+                cSettings: [.define("GL_GLEXT_PROTOTYPES")]),
     ]    
 )
 
- 
 #if os(Android) 
 package.products.append(.library(name: "OpenGLExampleApp", type: .dynamic, targets: ["app"]))
 package.dependencies.append(.package(name: "SwiftProtobuf", url: "https://github.com/apple/swift-protobuf.git", .exact("1.13.0")))
@@ -29,8 +33,6 @@ package.targets += [
 #endif
 
 #if os(Linux)
-package.dependencies.append(.package(name: "COpenGL", url: "https://github.com/sakrist/COpenGL.swift.git", from:"1.0.7"))
-package.dependencies.append(.package(name: "CX11", url: "https://github.com/sakrist/CX11.swift.git", from:"1.0.5"))
-package.targets[0].dependencies += ["COpenGL", "CX11"]
+package.targets[0].dependencies += ["OpenGL", "X11"]
 #endif
 
