@@ -67,7 +67,7 @@ public class Scene: RenderObject {
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
-        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:-4.0)
+        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:4.0)
         
         update()
     }

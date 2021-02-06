@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		35BCE6C7229D70D30097A61A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
 		D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21C37C3207DFA790074470D /* Default-568h@2x.png */; };
-		D24EFDB625CF2895001BB280 /* GLApplication in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDB525CF2895001BB280 /* GLApplication */; };
-		D24EFDBF25CF2900001BB280 /* GLApplication in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDBE25CF2900001BB280 /* GLApplication */; };
 		D24EFDC125CF2900001BB280 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDC025CF2900001BB280 /* SwiftMath */; };
+		D24EFDD425CF2C17001BB280 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDD325CF2C17001BB280 /* SwiftMath */; };
+		D24EFDE025CF316A001BB280 /* GLApplication in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDDF25CF316A001BB280 /* GLApplication */; };
 		D266351D1FF82A6F00E5BDAF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		D266351E1FF82A6F00E5BDAF /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
 		D266351F1FF82A6F00E5BDAF /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Geometry.swift */; };
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D24EFDB625CF2895001BB280 /* GLApplication in Frameworks */,
+				D24EFDD425CF2C17001BB280 /* SwiftMath in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				D24EFDE025CF316A001BB280 /* GLApplication in Frameworks */,
 				D24EFDC125CF2900001BB280 /* SwiftMath in Frameworks */,
-				D24EFDBF25CF2900001BB280 /* GLApplication in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,12 +149,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				D24EFDC825CF2919001BB280 /* PBXTargetDependency */,
+				D24EFDD925CF2C23001BB280 /* PBXTargetDependency */,
 				D24EFDB925CF28B6001BB280 /* PBXTargetDependency */,
 			);
 			name = iOS_example;
 			packageProductDependencies = (
-				D24EFDB525CF2895001BB280 /* GLApplication */,
+				D24EFDD325CF2C17001BB280 /* SwiftMath */,
 			);
 			productName = iOS_example;
 			productReference = D22B30DB1FF828D0005D5394 /* iOS_example.app */;
@@ -175,8 +175,8 @@
 			);
 			name = app;
 			packageProductDependencies = (
-				D24EFDBE25CF2900001BB280 /* GLApplication */,
 				D24EFDC025CF2900001BB280 /* SwiftMath */,
+				D24EFDDF25CF316A001BB280 /* GLApplication */,
 			);
 			productName = app;
 			productReference = "opengl_example::app::Product" /* app */;
@@ -212,8 +212,8 @@
 			);
 			mainGroup = OBJ_5;
 			packageReferences = (
-				D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */,
 				D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */,
+				D24EFDDE25CF316A001BB280 /* XCRemoteSwiftPackageReference "GLApplication" */,
 			);
 			productRefGroup = OBJ_28 /* Products */;
 			projectDirPath = "";
@@ -280,9 +280,9 @@
 			isa = PBXTargetDependency;
 			productRef = D24EFDC425CF2908001BB280 /* SwiftMath */;
 		};
-		D24EFDC825CF2919001BB280 /* PBXTargetDependency */ = {
+		D24EFDD925CF2C23001BB280 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = D24EFDC725CF2919001BB280 /* SwiftMath */;
+			productRef = D24EFDD825CF2C23001BB280 /* SwiftMath */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,6 +586,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D24EFDDE25CF316A001BB280 /* XCRemoteSwiftPackageReference "GLApplication" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/GLApplication.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
 		D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sakrist/SwiftMath";
@@ -605,17 +613,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D24EFDB525CF2895001BB280 /* GLApplication */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
-			productName = GLApplication;
-		};
 		D24EFDB825CF28B6001BB280 /* GLApplication */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
-			productName = GLApplication;
-		};
-		D24EFDBE25CF2900001BB280 /* GLApplication */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
 			productName = GLApplication;
@@ -635,10 +633,20 @@
 			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
 			productName = SwiftMath;
 		};
-		D24EFDC725CF2919001BB280 /* SwiftMath */ = {
+		D24EFDD325CF2C17001BB280 /* SwiftMath */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
 			productName = SwiftMath;
+		};
+		D24EFDD825CF2C23001BB280 /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D24EFDDF25CF316A001BB280 /* GLApplication */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D24EFDDE25CF316A001BB280 /* XCRemoteSwiftPackageReference "GLApplication" */;
+			productName = GLApplication;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

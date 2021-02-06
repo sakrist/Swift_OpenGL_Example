@@ -8,8 +8,7 @@ let package = Package(
 //        .package(path: "../SwiftMath"),
 //        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
         .package(url: "https://github.com/sakrist/SwiftMath", .branch("feature/matrix3x3-tests")),
-        .package(path: "../GLApplication")
-//        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.3")
+        .package(url: "https://github.com/sakrist/GLApplication", from: "0.0.4")
         //.package(url: "https://github.com/sakrist/GLAppBase", .branch("feature/build-with-spm"))
     ],
     targets: [
