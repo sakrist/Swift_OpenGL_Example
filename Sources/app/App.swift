@@ -18,9 +18,9 @@
 #endif
 
 import SwiftMath
-import GLAppBase
+import GLApplication
 
-class App: GLAppBase {
+class App: Application {
     
     // Scene variable, getter and setter.
     var scene:Scene { 
@@ -34,8 +34,8 @@ class App: GLAppBase {
     
     var lastMousePoint:Point = Point()
     
-    var pitch:Float = 0.3
-    var yaw:Float = -0.4
+    var pitch:Float = 0.0
+    var yaw:Float = 0.0
     
     override func applicationCreate() {
         
@@ -43,7 +43,9 @@ class App: GLAppBase {
             // create scene
             self.scene = Scene()
             scene.size = Size(640, 480)
-            scene.modelViewMatrix *= (xRotation(pitch) * yRotation(yaw))
+            let rotateX = Matrix4x4f.rotate(x: Angle.init(radians: pitch))
+            let rotateY = Matrix4x4f.rotate(y: Angle.init(radians: yaw))
+            scene.modelViewMatrix = scene.modelViewMatrix * (rotateX * rotateY)
             scene.geometries.append(Cube())
             
             // re-draw after init
@@ -71,10 +73,12 @@ class App: GLAppBase {
         let x = Float( (point.x - lastMousePoint.x) * scene.size.height/scene.size.width*0.5 )
         let y = Float( (point.y - lastMousePoint.y) * -(scene.size.width/scene.size.height*0.5) )
         
-        pitch +=  -degreesToRadians(y)
-        yaw += degreesToRadians(x)
+        pitch +=  -Angle.init(degrees:y).radians
+        yaw += Angle.init(degrees:x).radians
 
-        scene.modelViewMatrix = translate(x:0, y:0, z:-4.0) * (xRotation(pitch) * yRotation(yaw))
+        let rotateX = Matrix4x4f.rotate(x: Angle.init(radians: pitch))
+        let rotateY = Matrix4x4f.rotate(y: Angle.init(radians: yaw))
+        scene.modelViewMatrix = Matrix4x4f.translate(tx: 0, ty: 0, tz: 4) * (rotateX * rotateY)
         
         lastMousePoint = point
         

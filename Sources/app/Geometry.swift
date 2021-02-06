@@ -7,17 +7,17 @@
 //
 
 #if os(Linux)
-    import Glibc
-    import COpenGL.gl
-    import COpenGL.glx
+import Glibc
+import OpenGL
 #elseif os(OSX)
-    import Darwin.C
-    import Cocoa
+import Darwin.C
+import Cocoa
+import OpenGL
 #elseif os(iOS)
-    import OpenGLES
+import OpenGLES
 #elseif os(Android)
-    import Glibc
-    import GL.ES3
+import Glibc
+import GL.ES3
 #endif
 
 func BUFFER_OFFSET(_ i: Int) -> UnsafeRawPointer? {

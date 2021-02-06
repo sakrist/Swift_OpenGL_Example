@@ -8,11 +8,12 @@
 
 #if os(Linux)
     import Glibc
-    import COpenGL.gl
-    import COpenGL.glx
+    import OpenGL
 #elseif os(OSX)
     import Darwin.C
     import Cocoa
+    import OpenGL
+    import simd
 #elseif os(iOS)
     import OpenGLES
 #elseif os(Android)
@@ -20,8 +21,19 @@
     import GL.ES3
 #endif
 
-import GLAppBase
+import GLApplication
 import SwiftMath
+
+extension Matrix4x4f {
+    
+    func extract() -> Matrix3x3f {
+        let P = self[0].xyz
+        let Q = self[1].xyz
+        let R = self[2].xyz
+        return Matrix3x3f.init(P, Q, R)
+    }
+}
+
 
 
 public class Scene: RenderObject {
@@ -30,11 +42,11 @@ public class Scene: RenderObject {
     
     var geometries:[Geometry] = []
     
-    var modelViewProjectionMatrix = matrix_identity_float4x4
-    var modelViewMatrix = matrix_identity_float4x4
-    var projectionMatrix = matrix_identity_float4x4
+    var modelViewProjectionMatrix = Matrix4x4f.identity
+    var modelViewMatrix = Matrix4x4f.identity
+    var projectionMatrix = Matrix4x4f.identity
     
-    var normalMatrix = float3x3()
+    var normalMatrix = Matrix3x3f.identity
     
     var fovAngle:Float = 65.0
     var farZ:Float = 100.0
@@ -43,7 +55,8 @@ public class Scene: RenderObject {
     var size:Size = Size(640, 480) {
         didSet {
             let aspect = fabsf(Float(size.width / size.height))
-            projectionMatrix = perspective( degreesToRadians(fovAngle), aspect:aspect, nearZ:nearZ, farZ:farZ)
+            let angle = Angle.init(degrees: fovAngle)
+            projectionMatrix = Matrix4x4f.proj(fovy: angle, aspect: aspect, near: nearZ, far: farZ)
         }
     }
     
@@ -54,7 +67,7 @@ public class Scene: RenderObject {
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
-        modelViewMatrix = translate(x:0, y:0, z:-4.0)
+        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:4.0)
         
         update()
     }
@@ -63,10 +76,9 @@ public class Scene: RenderObject {
         
         modelViewProjectionMatrix = projectionMatrix * modelViewMatrix
         
-        normalMatrix = float4x4to3x3(transpose:false, modelViewMatrix)
-        var invertible = true
-        normalMatrix = invert(normalMatrix, isInvertible:&invertible)
-        normalMatrix = transpose(normalMatrix)
+        normalMatrix = modelViewMatrix.extract()
+        normalMatrix = normalMatrix.inversed
+        normalMatrix = normalMatrix.transposed
         
     }
     
