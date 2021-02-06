@@ -9,20 +9,19 @@
 /* Begin PBXBuildFile section */
 		35BCE6C7229D70D30097A61A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
 		D21C37C4207DFA790074470D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D21C37C3207DFA790074470D /* Default-568h@2x.png */; };
+		D24EFDB625CF2895001BB280 /* GLApplication in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDB525CF2895001BB280 /* GLApplication */; };
+		D24EFDBF25CF2900001BB280 /* GLApplication in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDBE25CF2900001BB280 /* GLApplication */; };
+		D24EFDC125CF2900001BB280 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D24EFDC025CF2900001BB280 /* SwiftMath */; };
 		D266351D1FF82A6F00E5BDAF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		D266351E1FF82A6F00E5BDAF /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
 		D266351F1FF82A6F00E5BDAF /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Geometry.swift */; };
-		D26635201FF82A6F00E5BDAF /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* MatrixTransform.swift */; };
 		D26635211FF82A6F00E5BDAF /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Scene.swift */; };
 		D26635221FF82A6F00E5BDAF /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
-		D2DF329325BC5401002AA42F /* GLAppBase in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329225BC5401002AA42F /* GLAppBase */; };
-		D2DF329525BC5404002AA42F /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329425BC5404002AA42F /* SwiftMath */; };
-		D2DF329925BC5413002AA42F /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329825BC5413002AA42F /* SwiftMath */; };
-		D2DF329B25BC5415002AA42F /* GLAppBase in Frameworks */ = {isa = PBXBuildFile; productRef = D2DF329A25BC5415002AA42F /* GLAppBase */; };
+		D26A51CF25CF27B000B0EFD3 /* String_extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A51CE25CF27B000B0EFD3 /* String_extention.swift */; };
+		D26A51D025CF27B000B0EFD3 /* String_extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26A51CE25CF27B000B0EFD3 /* String_extention.swift */; };
 		OBJ_43 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* App.swift */; };
 		OBJ_44 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Cube.swift */; };
 		OBJ_45 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Geometry.swift */; };
-		OBJ_46 /* MatrixTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* MatrixTransform.swift */; };
 		OBJ_47 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Scene.swift */; };
 		OBJ_48 /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Shader.swift */; };
 		OBJ_49 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* main.swift */; };
@@ -43,11 +42,11 @@
 /* Begin PBXFileReference section */
 		D21C37C3207DFA790074470D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D22B30DB1FF828D0005D5394 /* iOS_example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D26A51CE25CF27B000B0EFD3 /* String_extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_extention.swift; sourceTree = "<group>"; };
 		D2DF327625BC43E5002AA42F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_20 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Cube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		OBJ_22 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
-		OBJ_23 /* MatrixTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTransform.swift; sourceTree = "<group>"; };
 		OBJ_24 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		OBJ_25 /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		OBJ_26 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -60,8 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2DF329B25BC5415002AA42F /* GLAppBase in Frameworks */,
-				D2DF329925BC5413002AA42F /* SwiftMath in Frameworks */,
+				D24EFDB625CF2895001BB280 /* GLApplication in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,8 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				D2DF329525BC5404002AA42F /* SwiftMath in Frameworks */,
-				D2DF329325BC5401002AA42F /* GLAppBase in Frameworks */,
+				D24EFDC125CF2900001BB280 /* SwiftMath in Frameworks */,
+				D24EFDBF25CF2900001BB280 /* GLApplication in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,10 +88,10 @@
 				OBJ_20 /* App.swift */,
 				OBJ_21 /* Cube.swift */,
 				OBJ_22 /* Geometry.swift */,
-				OBJ_23 /* MatrixTransform.swift */,
 				OBJ_24 /* Scene.swift */,
 				OBJ_25 /* Shader.swift */,
 				OBJ_26 /* main.swift */,
+				D26A51CE25CF27B000B0EFD3 /* String_extention.swift */,
 			);
 			name = app;
 			path = Sources/app;
@@ -151,11 +149,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				D24EFDC825CF2919001BB280 /* PBXTargetDependency */,
+				D24EFDB925CF28B6001BB280 /* PBXTargetDependency */,
 			);
 			name = iOS_example;
 			packageProductDependencies = (
-				D2DF329825BC5413002AA42F /* SwiftMath */,
-				D2DF329A25BC5415002AA42F /* GLAppBase */,
+				D24EFDB525CF2895001BB280 /* GLApplication */,
 			);
 			productName = iOS_example;
 			productReference = D22B30DB1FF828D0005D5394 /* iOS_example.app */;
@@ -171,11 +170,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				D24EFDC325CF2908001BB280 /* PBXTargetDependency */,
+				D24EFDC525CF2908001BB280 /* PBXTargetDependency */,
 			);
 			name = app;
 			packageProductDependencies = (
-				D2DF329225BC5401002AA42F /* GLAppBase */,
-				D2DF329425BC5404002AA42F /* SwiftMath */,
+				D24EFDBE25CF2900001BB280 /* GLApplication */,
+				D24EFDC025CF2900001BB280 /* SwiftMath */,
 			);
 			productName = app;
 			productReference = "opengl_example::app::Product" /* app */;
@@ -188,7 +189,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					D22B30DA1FF828D0005D5394 = {
 						CreatedOnToolsVersion = 9.2;
@@ -203,17 +204,16 @@
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "opengl_example" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
 			mainGroup = OBJ_5;
 			packageReferences = (
 				D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */,
-				D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */,
+				D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */,
 			);
 			productRefGroup = OBJ_28 /* Products */;
 			projectDirPath = "";
@@ -244,10 +244,10 @@
 				D26635221FF82A6F00E5BDAF /* Shader.swift in Sources */,
 				35BCE6C7229D70D30097A61A /* main.swift in Sources */,
 				D266351F1FF82A6F00E5BDAF /* Geometry.swift in Sources */,
+				D26A51D025CF27B000B0EFD3 /* String_extention.swift in Sources */,
 				D26635211FF82A6F00E5BDAF /* Scene.swift in Sources */,
 				D266351D1FF82A6F00E5BDAF /* App.swift in Sources */,
 				D266351E1FF82A6F00E5BDAF /* Cube.swift in Sources */,
-				D26635201FF82A6F00E5BDAF /* MatrixTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +258,7 @@
 				OBJ_43 /* App.swift in Sources */,
 				OBJ_44 /* Cube.swift in Sources */,
 				OBJ_45 /* Geometry.swift in Sources */,
-				OBJ_46 /* MatrixTransform.swift in Sources */,
+				D26A51CF25CF27B000B0EFD3 /* String_extention.swift in Sources */,
 				OBJ_47 /* Scene.swift in Sources */,
 				OBJ_48 /* Shader.swift in Sources */,
 				OBJ_49 /* main.swift in Sources */,
@@ -266,6 +266,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D24EFDB925CF28B6001BB280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D24EFDB825CF28B6001BB280 /* GLApplication */;
+		};
+		D24EFDC325CF2908001BB280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D24EFDC225CF2908001BB280 /* GLApplication */;
+		};
+		D24EFDC525CF2908001BB280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D24EFDC425CF2908001BB280 /* SwiftMath */;
+		};
+		D24EFDC825CF2919001BB280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D24EFDC725CF2919001BB280 /* SwiftMath */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D22B30EB1FF828D1005D5394 /* Debug */ = {
@@ -316,7 +335,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = opengl_example.xcodeproj/Info_ios.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,7 +394,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = opengl_example.xcodeproj/Info_ios.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,13 +412,41 @@
 		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
@@ -415,12 +462,39 @@
 		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -436,6 +510,7 @@
 		OBJ_40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -458,6 +533,7 @@
 		OBJ_41 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -510,44 +586,59 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/SwiftMath";
+			requirement = {
+				branch = "feature/matrix3x3-tests";
+				kind = branch;
+			};
+		};
 		D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sakrist/GLAppBase";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
-			};
-		};
-		D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftGFX/SwiftMath";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.2;
+				branch = "feature/build-with-spm";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D2DF329225BC5401002AA42F /* GLAppBase */ = {
+		D24EFDB525CF2895001BB280 /* GLApplication */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
-			productName = GLAppBase;
+			productName = GLApplication;
 		};
-		D2DF329425BC5404002AA42F /* SwiftMath */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */;
-			productName = SwiftMath;
-		};
-		D2DF329825BC5413002AA42F /* SwiftMath */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2DF328E25BC53E4002AA42F /* XCRemoteSwiftPackageReference "SwiftMath" */;
-			productName = SwiftMath;
-		};
-		D2DF329A25BC5415002AA42F /* GLAppBase */ = {
+		D24EFDB825CF28B6001BB280 /* GLApplication */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
-			productName = GLAppBase;
+			productName = GLApplication;
+		};
+		D24EFDBE25CF2900001BB280 /* GLApplication */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
+			productName = GLApplication;
+		};
+		D24EFDC025CF2900001BB280 /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D24EFDC225CF2908001BB280 /* GLApplication */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2DF328A25BC53AB002AA42F /* XCRemoteSwiftPackageReference "GLAppBase" */;
+			productName = GLApplication;
+		};
+		D24EFDC425CF2908001BB280 /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D24EFDC725CF2919001BB280 /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D26A51D625CF286D00B0EFD3 /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
