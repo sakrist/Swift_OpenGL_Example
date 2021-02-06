@@ -15,7 +15,8 @@ let package = Package(
     targets: [
         .target(name: "app", 
                 dependencies: [ "SwiftMath", "GLApplication" ], 
-                cSettings: [.define("GL_GLEXT_PROTOTYPES")]),
+                cSettings: [.define("GL_GLEXT_PROTOTYPES"),
+                .define("XLIB_ILLEGAL_ACCESS")]),
     ]    
 )
 
