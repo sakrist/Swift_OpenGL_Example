@@ -33,7 +33,3 @@ package.targets += [
 ]
 #endif
 
-#if os(Linux)
-//package.targets[0].dependencies += ["OpenGL", "X11"]
-#endif
-

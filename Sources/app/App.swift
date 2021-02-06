@@ -20,7 +20,7 @@
 import SwiftMath
 import GLAppBase
 
-class App: GLAppBase {
+class App: Application {
     
     // Scene variable, getter and setter.
     var scene:Scene { 
