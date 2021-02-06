@@ -21,7 +21,7 @@
     import GL.ES3
 #endif
 
-import GLAppBase
+import GLApplication
 import SwiftMath
 
 extension Matrix4x4f {
@@ -77,7 +77,6 @@ public class Scene: RenderObject {
         modelViewProjectionMatrix = projectionMatrix * modelViewMatrix
         
         normalMatrix = modelViewMatrix.extract()
-//        var invertible = true
         normalMatrix = normalMatrix.inversed
         normalMatrix = normalMatrix.transposed
         

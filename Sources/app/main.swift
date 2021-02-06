@@ -17,7 +17,7 @@
 
 
 #if os(Linux) || os(macOS)
-import GLAppBase
+import GLApplication
 func main() {    
     let app = App()
     app.run()

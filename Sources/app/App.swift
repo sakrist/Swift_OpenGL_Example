@@ -18,7 +18,7 @@
 #endif
 
 import SwiftMath
-import GLAppBase
+import GLApplication
 
 class App: Application {
     
