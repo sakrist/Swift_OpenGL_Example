@@ -8,7 +8,7 @@
 
 #if os(Linux)
     import Glibc
-    import COpenGL.gl
+    import OpenGL
 #elseif os(OSX)
     import Darwin.C
     import GLKit

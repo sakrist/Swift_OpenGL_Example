@@ -13,6 +13,7 @@
     import Darwin.C
     import Cocoa
     import OpenGL
+    import simd
 #elseif os(iOS)
     import OpenGLES
 #elseif os(Android)
@@ -22,7 +23,6 @@
 
 import GLAppBase
 import SwiftMath
-import simd
 
 extension Matrix4x4f {
     
@@ -34,12 +34,6 @@ extension Matrix4x4f {
     }
 }
 
-extension Matrix3x3f {
-    var transposed: Matrix3x3f {
-        let sm = matrix_float3x3.init(self)
-        return unsafeBitCast(sm.transpose, to: Matrix3x3f.self)
-    }
-}
 
 
 public class Scene: RenderObject {

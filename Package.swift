@@ -6,10 +6,11 @@ let package = Package(
     name: "OpenGLExampleApp",
     dependencies: [
 //        .package(path: "../SwiftMath"),
-        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
-//        .package(path: "../GLAppBase")
+//        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
+        .package(url: "https://github.com/sakrist/SwiftMath", .branch("feature/matrix3x3-tests")),
+        .package(path: "../GLAppBase")
 //        .package(url: "https://github.com/sakrist/GLAppBase", from: "0.0.3")
-        .package(url: "https://github.com/sakrist/GLAppBase", .branch("feature/build-with-spm"))
+        //.package(url: "https://github.com/sakrist/GLAppBase", .branch("feature/build-with-spm"))
     ],
     targets: [
         .target(name: "app", 
@@ -33,6 +34,6 @@ package.targets += [
 #endif
 
 #if os(Linux)
-package.targets[0].dependencies += ["OpenGL", "X11"]
+//package.targets[0].dependencies += ["OpenGL", "X11"]
 #endif
 
