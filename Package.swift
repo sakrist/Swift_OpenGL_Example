@@ -5,15 +5,13 @@ import PackageDescription
 let package = Package(
     name: "OpenGLExampleApp",
     dependencies: [
-//        .package(path: "../SwiftMath"),
-//        .package(url: "https://github.com/SwiftGFX/SwiftMath", from: "3.3.0"),
-        .package(url: "https://github.com/sakrist/SwiftMath", .branch("feature/matrix3x3-tests")),
-        .package(url: "https://github.com/sakrist/GLApplication", from: "0.0.4")
-        //.package(url: "https://github.com/sakrist/GLAppBase", .branch("feature/build-with-spm"))
+        .package(name: "SGLMath", url: "https://github.com/SwiftGL/Math.git", from: "3.0.0"),
+        .package(path: "../GLApplication"),
+//        .package(url: "https://github.com/sakrist/GLApplication", from: "0.0.4"),
     ],
     targets: [
         .target(name: "app", 
-                dependencies: [ "SwiftMath", "GLApplication" ], 
+                dependencies: [ "SGLMath", "GLApplication" ], 
                 cSettings: [.define("GL_GLEXT_PROTOTYPES")]),
     ]    
 )

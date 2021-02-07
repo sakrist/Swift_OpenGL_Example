@@ -22,15 +22,15 @@
 #endif
 
 import GLApplication
-import SwiftMath
+import SGLMath
 
-extension Matrix4x4f {
+extension mat4x4 {
     
-    func extract() -> Matrix3x3f {
+    func extract() -> mat3x3 {
         let P = self[0].xyz
         let Q = self[1].xyz
         let R = self[2].xyz
-        return Matrix3x3f.init(P, Q, R)
+        return mat3x3(P, Q, R)
     }
 }
 
@@ -42,11 +42,11 @@ public class Scene: RenderObject {
     
     var geometries:[Geometry] = []
     
-    var modelViewProjectionMatrix = Matrix4x4f.identity
-    var modelViewMatrix = Matrix4x4f.identity
-    var projectionMatrix = Matrix4x4f.identity
+    var modelViewProjectionMatrix = mat4x4.init(1.0)
+    var modelViewMatrix = mat4x4.init(1.0)
+    var projectionMatrix = mat4x4.init(1.0)
     
-    var normalMatrix = Matrix3x3f.identity
+    var normalMatrix = mat3x3.init(1.0)
     
     var fovAngle:Float = 65.0
     var farZ:Float = 100.0
@@ -54,15 +54,9 @@ public class Scene: RenderObject {
     
     var size:Size = Size(640, 480) {
         didSet {
-            let aspect = fabsf(Float(size.width / size.height))
-            let angle = Angle.init(degrees: fovAngle)
-            
-            let height = 1.0 / tan(angle * 0.5)
-            let width  = height * 1.0/aspect;
-            
-            projectionMatrix = Matrix4x4f.projRH(x:0, y:0, 
-                                                 w:width, h:height, 
-                                                 near: nearZ, far: farZ)
+            let aspect = fabsf(Float(size.width) / Float(size.height))
+            let angle = radians(fovAngle)            
+            projectionMatrix = SGLMath.perspective(angle, aspect, nearZ, farZ) 
         }
     }
     
@@ -73,7 +67,8 @@ public class Scene: RenderObject {
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
-        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:-4.0)
+        let tr = vec3(0, 0, -4.0)
+        modelViewMatrix = SGLMath.translate(modelViewMatrix, tr)
         
         update()
     }
@@ -83,8 +78,8 @@ public class Scene: RenderObject {
         modelViewProjectionMatrix = projectionMatrix * modelViewMatrix
         
         normalMatrix = modelViewMatrix.extract()
-        normalMatrix = normalMatrix.inversed
-        normalMatrix = normalMatrix.transposed
+        normalMatrix = normalMatrix.inverse
+        normalMatrix = normalMatrix.transpose
         
     }
     

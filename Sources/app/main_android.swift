@@ -9,7 +9,7 @@
 #if os(Android)
 import Foundation
 import GLApplication
-import SwiftMath
+import SGLMath
 
 import ndk.log
 

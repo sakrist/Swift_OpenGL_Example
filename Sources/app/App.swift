@@ -17,7 +17,7 @@
     import GL.ES3
 #endif
 
-import SwiftMath
+import SGLMath
 import GLApplication
 
 class App: Application {
@@ -34,8 +34,8 @@ class App: Application {
     
     var lastMousePoint:Point = Point()
     
-    var pitch:Float = 0.0
-    var yaw:Float = 0.0
+    var pitch:Float = 0.3
+    var yaw:Float = -0.4
     
     override func applicationCreate() {
         
@@ -43,9 +43,10 @@ class App: Application {
             // create scene
             self.scene = Scene()
             scene.size = Size(640, 480)
-            let rotateX = Matrix4x4f.rotate(x: Angle.init(radians: pitch))
-            let rotateY = Matrix4x4f.rotate(y: Angle.init(radians: yaw))
-            scene.modelViewMatrix = scene.modelViewMatrix * (rotateX * rotateY)
+            
+            let rotateX = SGLMath.rotate(mat4(1), pitch, vec3(1, 0, 0))
+            let rotateXY = SGLMath.rotate(rotateX, yaw, vec3(0, 1, 0))
+            scene.modelViewMatrix = scene.modelViewMatrix * rotateXY
             scene.geometries.append(Cube())
             
             // re-draw after init
@@ -68,19 +69,21 @@ class App: Application {
     
     override func mouseMove(_ point:Point) {
 
- 
-        
-        let x = Float( (point.x - lastMousePoint.x) * scene.size.height/scene.size.width*0.5 )
-        let y = Float( (point.y - lastMousePoint.y) * -(scene.size.width/scene.size.height*0.5) )
-        
-        pitch +=  -Angle.init(degrees:y).radians
-        yaw += Angle.init(degrees:x).radians
-
-        let rotateX = Matrix4x4f.rotate(x: Angle.init(radians: pitch))
-        let rotateY = Matrix4x4f.rotate(y: Angle.init(radians: yaw))
-        scene.modelViewMatrix = Matrix4x4f.translate(tx: 0, ty: 0, tz: -4) * (rotateX * rotateY)
-        
+        let xD = point.x - lastMousePoint.x
+        let yD = point.y - lastMousePoint.y
         lastMousePoint = point
+        
+        if (xD > 40 || yD > 40) { return } // exit 
+        
+        let x = Float(xD) * Float(scene.size.height)/Float(scene.size.width) * 0.5 
+        let y = Float(yD) * -Float(scene.size.width)/Float(scene.size.height) * 0.5 
+        
+        pitch +=  -radians(y)
+        yaw += radians(x)
+
+        let rotateX = SGLMath.rotate(mat4(1.0), pitch, vec3(1,0,0))
+        let rotateXY = SGLMath.rotate(rotateX, yaw, vec3(0,1,0))
+        scene.modelViewMatrix = SGLMath.translate(mat4(1), vec3(0,0,-4)) * rotateXY
         
         needsDisplay()
     }
