@@ -56,7 +56,13 @@ public class Scene: RenderObject {
         didSet {
             let aspect = fabsf(Float(size.width / size.height))
             let angle = Angle.init(degrees: fovAngle)
-            projectionMatrix = Matrix4x4f.proj(fovy: angle, aspect: aspect, near: nearZ, far: farZ)
+            
+            let height = 1.0 / tan(angle * 0.5)
+            let width  = height * 1.0/aspect;
+            
+            projectionMatrix = Matrix4x4f.projRH(x:0, y:0, 
+                                                 w:width, h:height, 
+                                                 near: nearZ, far: farZ)
         }
     }
     
@@ -67,7 +73,7 @@ public class Scene: RenderObject {
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
-        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:4.0)
+        modelViewMatrix = Matrix4x4f.translate(tx:0, ty:0, tz:-4.0)
         
         update()
     }

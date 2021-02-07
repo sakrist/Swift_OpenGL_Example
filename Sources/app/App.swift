@@ -78,7 +78,7 @@ class App: Application {
 
         let rotateX = Matrix4x4f.rotate(x: Angle.init(radians: pitch))
         let rotateY = Matrix4x4f.rotate(y: Angle.init(radians: yaw))
-        scene.modelViewMatrix = Matrix4x4f.translate(tx: 0, ty: 0, tz: 4) * (rotateX * rotateY)
+        scene.modelViewMatrix = Matrix4x4f.translate(tx: 0, ty: 0, tz: -4) * (rotateX * rotateY)
         
         lastMousePoint = point
         
