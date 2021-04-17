@@ -21,3 +21,8 @@
 3. Open folder `Android` in Android Studio and run it on Device or Android Simulator.
 
 4. Edit path to `sdk.dir` in `local.properties`
+
+
+Note: SPM is actually native to system and `#if os(Android)` does not work in Package.swift
+Workaround: 
+Comment out `#if os(Android)` line and closing `#endif`.
