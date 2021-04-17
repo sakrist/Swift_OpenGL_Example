@@ -23,6 +23,7 @@
 4. Edit path to `sdk.dir` in `local.properties`
 
 
-Note: SPM is actually native to system and `#if os(Android)` does not work in Package.swift
+Note: SPM is actually native to system and `#if os(Android)` does not work in `Package.swift`
+
 Workaround: 
 Comment out `#if os(Android)` line and closing `#endif`.
