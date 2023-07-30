@@ -10,3 +10,6 @@ build.sh
 **/xcuserdata**
 Package.resolved
 Android/app/src/main/jniLibs
+Android/app/swiftpm-build/*
+swiftpm-build
+.DS_Store

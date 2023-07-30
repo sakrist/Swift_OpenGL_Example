@@ -3,6 +3,11 @@ package com.home.Swift_OpenGL_Example;
 public class SwiftApp {
 
     static {
+        System.loadLibrary("icudata");
+        System.loadLibrary("icuuc");
+        System.loadLibrary("icui18n");
+        System.loadLibrary("Foundation");
+        System.loadLibrary("dispatch");
         System.loadLibrary("OpenGLExampleApp");
     }
 

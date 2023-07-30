@@ -1,0 +1,3 @@
+[submodule "swift-android-toolchain"]
+	path = swift-android-toolchain
+	url = git@github.com:flowkey/swift-android-toolchain.git

@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Debug app",
+            "program": "${workspaceFolder:Swift_OpenGL_Example}/.build/debug/app",
+            "args": [],
+            "cwd": "${workspaceFolder:Swift_OpenGL_Example}",
+            "preLaunchTask": "swift: Build Debug app"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Release app",
+            "program": "${workspaceFolder:Swift_OpenGL_Example}/.build/release/app",
+            "args": [],
+            "cwd": "${workspaceFolder:Swift_OpenGL_Example}",
+            "preLaunchTask": "swift: Build Release app"
+        }
+    ]
+}

@@ -11,13 +11,15 @@ import Foundation
 import GLApplication
 import SwiftMath
 
-import ndk.log
+import ndk
 
 var app:App?
 
 func os_log(_ string:String) {
-    let cstr = string.cString(using: String.Encoding.utf8)
-    __android_log_print_1(cstr)
+    _ = string.withCString {
+        // TODO: pass app name to tag
+        android_log(ANDROID_LOG_DEBUG, "swift", $0)
+    }
 }
 
 @_cdecl("Java_com_home_Swift_1OpenGL_1Example_SwiftApp_applicationCreate")

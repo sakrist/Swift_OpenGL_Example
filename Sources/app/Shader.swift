@@ -17,7 +17,7 @@
     import OpenGLES.ES3
 #elseif os(Android)
     import Glibc
-    import GL.ES3
+    import ndk.GLES3
 #endif
 
 public func isGLOn() -> Bool {
