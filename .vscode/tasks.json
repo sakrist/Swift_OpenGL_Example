@@ -1,0 +1,158 @@
+{
+    "version": "2.0.0",
+    "problemMatcher": {
+      "owner": "swift",
+      "fileLocation": "autoDetect",
+      "pattern": {
+        "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+        "file": 1,
+        "line": 2,
+        "column": 3,
+        "severity": 4,
+        "message": 5
+      }
+    },
+    "tasks": [
+      {
+        "label": "Build (Debug DWARF)",
+        "type": "shell",
+        "command": "swift",
+        "args": [
+          "build",
+          "-c", "debug",
+          "-Xlinker", "-debug:dwarf",
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Build (Debug PDB)",
+        "type": "shell",
+        "command": "swift",
+        "args": [
+          "build",
+          "-c", "debug",
+          "-Xswiftc", "-g",
+          "-Xswiftc", "-debug-info-format=codeview",
+          "-Xlinker", "-debug",
+        ],
+        "group": "build",
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Build (Release)",
+        "type": "shell",
+        "command": "swift",
+        "args": [
+          "build",
+          "-c", "release",
+        ],
+        "group": "build",
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Test (Debug)",
+        "type": "shell",
+        "command": "swift",
+        "args": [
+          "test",
+          "-c", "debug",
+          "-Xswiftc", "-DENABLE_TESTING",
+        ],
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        },
+      },
+      {
+        "label": "Test (Coverage)",
+        "command": "swift",
+        "type": "shell",
+        "args": [
+          "test",
+          "-c", "debug",
+          "-Xswiftc", "-DENABLE_TESTING",
+          "--enable-code-coverage",
+        ],
+        "group": "test",
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        }
+      },
+      {
+        "label": "Test (Release)",
+        "command": "swift",
+        "type": "shell",
+        "args": [
+          "test",
+          "-c", "release",
+          "-Xswiftc", "-DENABLE_TESTING",
+        ],
+        "group": "test",
+        "windows": {
+          "options": {
+            "shell": {
+              "executable": "C:\\WINDOWS\\System32\\cmd.exe",
+              "args": [
+                "/d",
+                "/c",
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+  
