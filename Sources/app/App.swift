@@ -15,12 +15,15 @@
 #elseif os(Android)
     import Glibc
     import ndk.GLES3
+#elseif os(Windows)
+    import SwiftWin32
+    import Win.GL
 #endif
 
 import SwiftMath
 import GLApplication
 
-class App: Application {
+class App: GLApplication.Application {
     
     // Scene variable, getter and setter.
     var scene:Scene { 
@@ -32,7 +35,7 @@ class App: Application {
         }        
     }
     
-    var lastMousePoint:Point = Point()
+    var lastMousePoint = SwiftMath.Point()
     
     var pitch:Float = 0.0
     var yaw:Float = 0.0
@@ -57,16 +60,16 @@ class App: Application {
     
     }
     
-    override func windowDidResize(_ size:Size) {
+    override func windowDidResize(_ size:SwiftMath.Size) {
         scene.size = size
     }
     
     // mouse events
-    override func mouseDown(_ point:Point, button:Int) {
+    override func mouseDown(_ point:SwiftMath.Point, button:Int) {
         lastMousePoint = point
     }
     
-    override func mouseMove(_ point:Point) {
+    override func mouseMove(_ point:SwiftMath.Point) {
 
  
         
@@ -85,7 +88,7 @@ class App: Application {
         needsDisplay()
     }
     
-    override func mouseUp(_ point:Point) {
+    override func mouseUp(_ point:SwiftMath.Point) {
         
     }
 }

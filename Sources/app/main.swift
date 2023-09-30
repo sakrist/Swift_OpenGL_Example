@@ -16,7 +16,7 @@
 #endif
 
 
-#if os(Linux) || os(macOS)
+#if os(Linux) || os(macOS) || os(Windows)
 import GLApplication
 func main() {    
     let app = App()

@@ -18,6 +18,8 @@
 #elseif os(Android)
     import Glibc
     import ndk.GLES3
+#elseif os(Windows)
+    import Win.GL
 #endif
 
 public func isGLOn() -> Bool {

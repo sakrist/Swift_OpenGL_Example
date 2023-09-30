@@ -18,6 +18,8 @@ import OpenGLES
 #elseif os(Android)
 import Glibc
 import ndk.GLES3
+#elseif os(Windows)
+import Win.GL
 #endif
 
 func BUFFER_OFFSET(_ i: Int) -> UnsafeRawPointer? {
