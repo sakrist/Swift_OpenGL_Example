@@ -25,6 +25,14 @@ func main() {
 }
 main()
 
+#elseif os(Windows)
+
+import SwiftWin32
+ApplicationMain(CommandLine.argc,
+                CommandLine.unsafeArgv,
+                nil,
+                String(describing: String(reflecting: App.self)))
+
 #elseif os(iOS)
 import UIKit
 UIApplicationMain( CommandLine.argc,
